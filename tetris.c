@@ -17,7 +17,7 @@ void block_lock();
 void check_and_delete();
 
 void render();
-void show_gameover(); 
+void view_gameover(); 
 void view_clear();
 
 
@@ -111,7 +111,7 @@ int main()
         }
     }
 
-    show_gameover();
+    view_gameover();
     return 0;
 }
 
@@ -209,7 +209,7 @@ void render()
 
 
 //ゲームオーバー画面を表示する
-void show_gameover()
+void view_gameover()
 {
     view_clear();
     printf("\n\n==========\nGAME OVER\n==========\n\n");
