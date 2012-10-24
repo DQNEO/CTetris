@@ -3,6 +3,9 @@
 #include <conio.h>
 #include <time.h>
 
+#define KEY_LEFT  'j'
+#define KEY_RIGHT 'l'
+
 //関数プロトタイプ宣言
 void init();
 int  block_new();
@@ -17,7 +20,6 @@ void check_and_delete();
 void render();
 void view_gameover(); 
 void view_clear();
-
 
 //グローバル変数
 int background[21][12];     // 壁と固定済みブロック用
@@ -229,12 +231,12 @@ void block_operate()
     //キーに応じて各方向へブロックを移動したり、回転させたりする
     switch(key) {
 
-        case 'l': // move right
+        case KEY_RIGHT: // move right
             if(!is_attached(x+1, y)) {
                 block_move(x+1, y);
             }
             break;
-        case 'j': // move left
+        case KEY_LEFT: // move left
             if(!is_attached(x-1, y)) {
                 block_move(x-1, y);
             }
