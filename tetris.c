@@ -5,8 +5,8 @@
 
 //ƒOƒ[ƒoƒ‹•Ï”
 int stage[21][12] = {0};     //•Ç‚ÆŒÅ’èÏ‚İƒuƒƒbƒN—p
-int block[4][4] =    {0};     //Œ»İ—‰º’†‚ÌƒuƒƒbƒN‚ğ“ü‚ê‚é
-int field[21][12] =   {0};     //•`‰æ‚·‚éƒf[ƒ^Bstage[][]‚Éblock[][]‚ğd‚Ë‚½‚à‚Ì
+int block[4][4]   = {0};     //Œ»İ—‰º’†‚ÌƒuƒƒbƒN‚ğ“ü‚ê‚é
+int field[21][12] = {0};     //•`‰æ‚·‚éƒf[ƒ^Bstage[][]‚Éblock[][]‚ğd‚Ë‚½‚à‚Ì
 
 //‚Ví—Ş‚ÌƒuƒƒbƒN‚Ìƒf[ƒ^
 int block_list[7][4][4] = {
@@ -67,12 +67,12 @@ int is_gameover = 0; //ƒQ[ƒ€ƒI[ƒo[”»’èBV‚µ‚¢ƒuƒƒbƒN‚ª‰ŠúˆÊ’u‚É’u‚¯‚È‚¯‚ê‚
 
 //ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾
 void Initialize(); //ƒQ[ƒ€‹N“®’¼Œã‚Ì‰Šúİ’è‚ğs‚¤ŠÖ”B‰æ–Ê‚Æ•Ç‚Ìƒf[ƒ^‚ğ‰Šú‰»
-int   CreateBlock(); //V‚µ‚¢ƒuƒƒbƒN‚ğ¶¬‚µ‚ÄŸ‚ÌƒuƒƒbƒN‚É”­¶‚³‚¹‚é
+int  CreateBlock(); //V‚µ‚¢ƒuƒƒbƒN‚ğ¶¬‚µ‚ÄŸ‚ÌƒuƒƒbƒN‚É”­¶‚³‚¹‚é
 void ShowGameField(); //field[][]‚Ì’†g‚É‰‚¶‚ÄA‰æ–Ê‚ğ•`‰æ‚·‚é
 void block_operate(); //ƒL[“ü—Í‚É‰‚¶‚ÄƒuƒƒbƒN‚ÉˆÚ“®‚â‰ñ“]“™‚Ìˆ—‚ğs‚í‚¹‚é
-int   CheckOverlap(int, int); //—‰º’†‚ÌƒuƒƒbƒN‚ª•Ç‚âŒÅ’èÏ‚İƒuƒƒbƒN‚ÉÚG‚µ‚Ä‚¢‚È‚¢‚©”»•Ê
+int  CheckOverlap(int, int); //—‰º’†‚ÌƒuƒƒbƒN‚ª•Ç‚âŒÅ’èÏ‚İƒuƒƒbƒN‚ÉÚG‚µ‚Ä‚¢‚È‚¢‚©”»•Ê
 void MoveBlock(int, int); //—‰º’†ƒuƒƒbƒN‚ğˆê’UÁ‚µ‚ÄA”CˆÓ‚ÌÀ•W‚ÉˆÚ“®‚³‚¹‚é
-int   TurnBlock(); //ƒuƒƒbƒN‚Ì‰ñ“]‚ğˆ—‚·‚é
+int  TurnBlock(); //ƒuƒƒbƒN‚Ì‰ñ“]‚ğˆ—‚·‚é
 void DropBlock(); //ƒuƒƒbƒN‚ğ—‰º‚³‚¹‚éB‰º‚ÉˆÚ“®‚Å‚«‚È‚¢ê‡ƒuƒƒbƒN‚ğ‚»‚ÌˆÊ’u‚ÉŒÅ’è
 void LockBlock(); //’…’n‚µ‚½ƒuƒƒbƒN‚ğŒÅ’èÏ‚İƒuƒƒbƒN‚É‰Á‚¦‚éŠÖ”
 void CheckLines(); //ƒuƒƒbƒN‚ª‰¡ˆê—ñ‚É‚»‚ë‚¦‚Î‚»‚±‚ğÁ‹ŒãAã‚ÌƒuƒƒbƒN‚ğ‚»‚±‚É‰º‚ë‚·
