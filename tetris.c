@@ -175,8 +175,7 @@ printf("\n");
 }
 
 //得点表示
-printf("\n１行消し：%d回２行消し：%d回３行消し：%d回４行消し：%d回\n", 
- oneline, twoline, threeline, fourline);
+//printf("\n１行消し：%d回２行消し：%d回３行消し：%d回４行消し：%d回\n", oneline, twoline, threeline, fourline);
 
 //ゲームオーバーの場合はGAME OVERを表示
 if(gameover){
