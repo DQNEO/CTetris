@@ -4,7 +4,7 @@
 #include <time.h>
 
 //関数プロトタイプ宣言
-void Initialize(); //ゲーム起動直後の初期設定を行う関数。画面と壁のデータを初期化
+void init(); //ゲーム起動直後の初期設定を行う関数。画面と壁のデータを初期化
 int  CreateBlock(); //新しいブロックを生成して次のブロックに発生させる
 void ShowGameField(); //field[][]の中身に応じて、画面を描画する
 void block_operate(); //キー入力に応じてブロックに移動や回転等の処理を行わせる
@@ -19,9 +19,9 @@ void view_clear();
 
 
 //グローバル変数
-int stage[21][12];     //壁と固定済みブロック用
-int block[4][4];     //現在落下中のブロックを入れる
-int field[21][12];     //描画するデータ。stage[][]にblock[][]を重ねたもの
+int stage[21][12];     // 壁と固定済みブロック用
+int block[4][4];       // 現在落下中のブロックを入れる
+int field[21][12];     // 描画するデータ。stage[][]にblock[][]を重ねたもの
 
 //７種類のブロックのデータ
 int block_list[7][4][4] = {
@@ -84,7 +84,7 @@ int main()
 {
     int time = 0; //タイマをリセット
 
-    Initialize(); //初期化
+    init(); //初期化
     int interval = 2000;
 
     //ゲームオーバーになるまで無限ループ
@@ -110,7 +110,7 @@ int main()
 }
 
 //ゲームの初期化
-void Initialize()
+void init()
 {
     int i, j; //forループ制御用変数
 
