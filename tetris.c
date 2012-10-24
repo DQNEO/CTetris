@@ -9,7 +9,7 @@ void init();
 int  block_new();
 void block_operate();
 
-int  is_overlap(int, int);
+int  is_attached(int, int);
 void block_move(int, int);
 int  block_rotate();
 void block_drop();
@@ -232,17 +232,17 @@ void block_operate()
     switch(key) {
 
         case 'l': // move right
-            if(!is_overlap(x+1, y)) {
+            if(!is_attached(x+1, y)) {
                 block_move(x+1, y);
             }
             break;
         case 'j': // move left
-            if(!is_overlap(x-1, y)) {
+            if(!is_attached(x-1, y)) {
                 block_move(x-1, y);
             }
             break;
         case ' ': // move down
-            if(!is_overlap(x, y+1)) {
+            if(!is_attached(x, y+1)) {
                 block_move(x, y+1);
             }
             break;
@@ -254,7 +254,7 @@ void block_operate()
 
 //重なり検査
 //落下中のブロックが壁や固定済みブロックに接触していないか判別
-int is_overlap(int x2, int y2)
+int is_attached(int x2, int y2)
 {
     int i, j; //forループ制御用変数
 
@@ -316,7 +316,7 @@ int block_rotate()
         }
     }
     //重なってるブロックが出てしまったらブロックを回転前に戻して中止
-    if(is_overlap(x, y)) {
+    if(is_attached(x, y)) {
         for(i = 0; i<4; i++) {
             for(j = 0; j<4; j++) {
                 block[i][j] = temp[i][j];
@@ -343,7 +343,7 @@ int block_rotate()
 void block_drop()
 {
     //重なりあるか判定
-    if(!is_overlap(x, y+1)) {
+    if(!is_attached(x, y+1)) {
         // なければ移動
         block_move(x, y+1);
     } else {
