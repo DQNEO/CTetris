@@ -26,6 +26,12 @@ int background[21][12];     // 壁と固定済みブロック用
 int block[4][4];       // 現在落下中のブロック
 int field[21][12];     // 描画するデータ。background[][]を背景としてその上にblock[][]を重ねたもの
 
+int y = 0; //ブロックの画面上でのy座標
+int x = 4; //ブロックの画面上でのx座標
+int oneline, twoline, threeline, fourline; //消したラインの数
+int is_gameover = 0; //ゲームオーバー判定。新しいブロックが初期位置に置けなければ1になる。
+
+
 //７種類のブロックのデータ
 int block_list[7][4][4] = {
     {
@@ -77,11 +83,6 @@ int block_list[7][4][4] = {
         {0,0,1,0}
     }
 };
-
-int y = 0; //ブロックの画面上でのy座標
-int x = 4; //ブロックの画面上でのx座標
-int oneline, twoline, threeline, fourline; //消したラインの数
-int is_gameover = 0; //ゲームオーバー判定。新しいブロックが初期位置に置けなければ1になる。
 
 int main()
 {
