@@ -26,8 +26,8 @@ int background[21][12];     // 壁と固定済みブロック用
 int block[4][4];       // 現在落下中のブロック
 int field[21][12];     // 描画するデータ。background[][]を背景としてその上にblock[][]を重ねたもの
 
-int y = 0; //ブロックの画面上でのy座標
-int x = 4; //ブロックの画面上でのx座標
+int y = 0; //ブロックのy座標
+int x = 4; //ブロックのx座標
 
 int oneline, twoline, threeline, fourline; //得点を記憶する変数たち(消したラインの数を記録)
 
