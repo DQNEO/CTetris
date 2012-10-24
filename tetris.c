@@ -63,7 +63,7 @@ int block_list[7][4][4] = {
 int y = 0; //ブロックの画面上でのy座標
 int x = 4; //ブロックの画面上でのx座標
 int oneline, twoline, threeline, fourline; //消したラインの数
-int gameover = 0; //ゲームオーバー判定。新しいブロックが初期位置に置けなければ1になる。
+int is_gameover = 0; //ゲームオーバー判定。新しいブロックが初期位置に置けなければ1になる。
 
 //関数プロトタイプ宣言
 void Initialize(); //ゲーム起動直後の初期設定を行う関数。画面と壁のデータを初期化
@@ -77,17 +77,17 @@ void DropBlock(); //ブロックを落下させる。下に移動できない場合ブロックをその位置
 void LockBlock(); //着地したブロックを固定済みブロックに加える関数
 void CheckLines(); //ブロックが横一列にそろえばそこを消去後、上のブロックをそこに下ろす
 
- 
+void show_gameover(); 
 
 int main()
 {
     int time = 0; //タイマをリセット
 
     Initialize(); //初期化
-    int interval = 20000;
+    int interval = 2000;
 
     //ゲームオーバーになるまで無限ループ
-    while(!gameover){
+    while(!is_gameover){
 
         //キー入力があればブロックを動かす
         if(kbhit()){
@@ -156,7 +156,7 @@ int CreateBlock()
 
             //初期位置に置いたブロックが既に固定ブロックに重なっていればゲームオーバー
             if(field[i][j+4] > 1) {
-                gameover = 1;
+                is_gameover = 1;
                 return 1;
             }
 
@@ -196,12 +196,18 @@ void ShowGameField()
     //printf("\n１行消し：%d回  ２行消し：%d回  ３行消し：%d回  ４行消し：%d回\n", oneline, twoline, threeline, fourline);
 
     //ゲームオーバーの場合はGAME OVERを表示
-    if(gameover){
-        system("cls");
-        printf("\n\n\n\n\nGAME OVER\n\n");
+    if(is_gameover){
+        show_gameover();
     }
 
 }
+
+void show_gameover()
+{
+    system("cls");
+    printf("\n\n\n\n\nGAME OVER\n\n");
+}
+
 
 //キー入力に応じてブロックを処理
 void ControlBlock()
