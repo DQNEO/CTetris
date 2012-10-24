@@ -68,27 +68,25 @@ int block_list[7][4][4] =
 
 int main()
 {
-int time = 0; //時間をカウント
+    int time = 0; //時間をカウント
 
-Initialize(); //初期化
+    Initialize(); //初期化
 
-//ゲームオーバーになるまでゲーム続行
-while(!gameover){
-
-//キー入力があればそれに応じて操作
-if(kbhit()){
-ControlBlock();
-}
-//時間がきたらブロックを１マス落下させる。時間が来てなければ時間を１だけインクリメント。
-if(time < 20000){
-time++;
-}
-else {
-DropBlock();
-time = 0;
-}
-}
-return 0;
+    //ゲームオーバーになるまでゲーム続行
+    while(!gameover){
+        //キー入力があればそれに応じて操作
+        if(kbhit()){
+            ControlBlock();
+        }
+        //時間がきたらブロックを１マス落下させる。時間が来てなければ時間を１だけインクリメント。
+        if(time < 20000){
+            time++;
+        } else {
+            DropBlock();
+            time = 0;
+        }
+    }
+    return 0;
 }
 
 //ゲームの初期化
