@@ -14,7 +14,7 @@ void MoveBlock(int, int); //落下中ブロックを一旦消して、任意の座標に移動させる
 int  block_rotate();
 void block_drop();
 void block_lock();
-void CheckLines(); //ブロックが横一列にそろえばそこを消去後、上のブロックをそこに下ろす
+void check_and_delete();
 
 void render();
 void show_gameover(); 
@@ -365,7 +365,7 @@ void block_lock()
         }
     }
 
-    CheckLines(); //横一列がそろってるか判定して処理する関数を呼ぶ
+    check_and_delete(); //横一列がそろってるか判定して処理する関数を呼ぶ
 
     //列完成判定後の壁をフィールドへ
     for(i = 0; i<21; i++) {
@@ -375,8 +375,9 @@ void block_lock()
     }
 }
 
-//横一列が完成しているか検査。そろっていればそこを消して上のブロック群を下ろす
-void CheckLines()
+//横一段が完成しているか検査。
+/そろっていればその段を消して上のブロック群を下ろす
+void check_and_delete()
 {
     int i, j, k; //forループ制御用
     int comp; //横一列がそろっていれば１、一つでも隙間があると０になる
