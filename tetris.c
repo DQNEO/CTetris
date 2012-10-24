@@ -196,22 +196,22 @@ void ControlBlock()
     //キーに応じて各方向へブロックを移動したり、回転させたりする
     switch(key) {
 
-        case 'f':
+        case 'l':
             if(!CheckOverlap(x+1, y)) {
                 MoveBlock(x+1, y);
             }
             break;
-        case 's':
+        case 'j':
             if(!CheckOverlap(x-1, y)) {
                 MoveBlock(x-1, y);
             }
             break;
-        case 'd':
+        case ' ':
             if(!CheckOverlap(x, y+1)) {
                 MoveBlock(x, y+1);
             }
             break;
-        case ' ':
+        case 'k':
             TurnBlock();
     }
 }
