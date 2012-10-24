@@ -84,11 +84,11 @@ int main()
 {
     int time = 0; //タイマをリセット
 
-    init(); //初期化
+    init();
     int interval = 2000;
 
     //ゲームオーバーになるまで無限ループ
-    while(!is_gameover){
+    while (!is_gameover) {
 
         //キー入力があればブロックを動かす
         if(kbhit()){
