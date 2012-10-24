@@ -201,7 +201,7 @@ void ShowGameField()
 void show_gameover()
 {
     system("cls");
-    printf("\n\n\n\n\nGAME OVER\n\n");
+    printf("\n\n==========\nGAME OVER==========\n\n");
 }
 
 
