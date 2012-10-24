@@ -5,6 +5,8 @@
 
 #define KEY_LEFT  'j'
 #define KEY_RIGHT 'l'
+#define KEY_DOWN  ' '
+#define KEY_ROTATE 'x'
 
 //関数プロトタイプ宣言
 void init();
@@ -241,12 +243,12 @@ void block_operate()
                 block_move(x-1, y);
             }
             break;
-        case ' ': // move down
+        case KEY_DOWN: // move down
             if(!is_attached(x, y+1)) {
                 block_move(x, y+1);
             }
             break;
-        case 'x': // rotate
+        case KEY_ROTATE: // rotate
             block_rotate();
 
     }
