@@ -31,9 +31,9 @@ int view_data[21][12];      // •`‰æ‚·‚éƒf[ƒ^Bbackground[][]‚ğ”wŒi‚Æ‚µ‚Ä‚»‚Ìã‚
 int y = 0; //ƒuƒƒbƒN‚ÌyÀ•W
 int x = 4; //ƒuƒƒbƒN‚ÌxÀ•W
 
-int oneline, twoline, threeline, fourline; //“¾“_‚ğ‹L‰¯‚·‚é•Ï”‚½‚¿(Á‚µ‚½ƒ‰ƒCƒ“‚Ì”‚ğ‹L˜^)
-
 int is_gameover = 0; //I—¹ƒtƒ‰ƒO
+
+int oneline, twoline, threeline, fourline; //“¾“_‚ğ‹L‰¯‚·‚é•Ï”‚½‚¿(Á‚µ‚½ƒ‰ƒCƒ“‚Ì”‚ğ‹L˜^)
 
 
 //‚Ví—Ş‚ÌƒuƒƒbƒN‚Ìƒf[ƒ^
