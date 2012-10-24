@@ -169,9 +169,8 @@ int CreateBlock()
 //画面表示
 void ShowGameField()
 {
-    int i, j; //forループ制御用変数
+    int i, j;
 
-    //画面を一旦クリア
     system("cls");
 
     //データに応じてブロックや空白を画面表示
