@@ -3,6 +3,21 @@
 #include <conio.h>
 #include <time.h>
 
+//関数プロトタイプ宣言
+void Initialize(); //ゲーム起動直後の初期設定を行う関数。画面と壁のデータを初期化
+int  CreateBlock(); //新しいブロックを生成して次のブロックに発生させる
+void ShowGameField(); //field[][]の中身に応じて、画面を描画する
+void block_operate(); //キー入力に応じてブロックに移動や回転等の処理を行わせる
+int  CheckOverlap(int, int); //落下中のブロックが壁や固定済みブロックに接触していないか判別
+void MoveBlock(int, int); //落下中ブロックを一旦消して、任意の座標に移動させる
+int  TurnBlock(); //ブロックの回転を処理する
+void DropBlock(); //ブロックを落下させる。下に移動できない場合ブロックをその位置に固定
+void LockBlock(); //着地したブロックを固定済みブロックに加える関数
+void CheckLines(); //ブロックが横一列にそろえばそこを消去後、上のブロックをそこに下ろす
+void show_gameover(); 
+void view_clear();
+
+
 //グローバル変数
 int stage[21][12] = {0};     //壁と固定済みブロック用
 int block[4][4]   = {0};     //現在落下中のブロックを入れる
@@ -64,20 +79,6 @@ int y = 0; //ブロックの画面上でのy座標
 int x = 4; //ブロックの画面上でのx座標
 int oneline, twoline, threeline, fourline; //消したラインの数
 int is_gameover = 0; //ゲームオーバー判定。新しいブロックが初期位置に置けなければ1になる。
-
-//関数プロトタイプ宣言
-void Initialize(); //ゲーム起動直後の初期設定を行う関数。画面と壁のデータを初期化
-int  CreateBlock(); //新しいブロックを生成して次のブロックに発生させる
-void ShowGameField(); //field[][]の中身に応じて、画面を描画する
-void block_operate(); //キー入力に応じてブロックに移動や回転等の処理を行わせる
-int  CheckOverlap(int, int); //落下中のブロックが壁や固定済みブロックに接触していないか判別
-void MoveBlock(int, int); //落下中ブロックを一旦消して、任意の座標に移動させる
-int  TurnBlock(); //ブロックの回転を処理する
-void DropBlock(); //ブロックを落下させる。下に移動できない場合ブロックをその位置に固定
-void LockBlock(); //着地したブロックを固定済みブロックに加える関数
-void CheckLines(); //ブロックが横一列にそろえばそこを消去後、上のブロックをそこに下ろす
-void show_gameover(); 
-void view_clear();
 
 int main()
 {
