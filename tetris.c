@@ -70,6 +70,7 @@ int main()
     int time = 0; //時間をカウント
 
     Initialize(); //初期化
+    int interval = 20000;
 
     //ゲームオーバーになるまでゲーム続行
     while(!gameover){
@@ -79,7 +80,7 @@ int main()
             ControlBlock();
         }
         //時間がきたらブロックを１マス落下させる。時間が来てなければ時間を１だけインクリメント。
-        if(time < 20000){
+        if(time < interval){
             time++;
         }
         else {
