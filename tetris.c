@@ -28,8 +28,10 @@ int field[21][12];     // 描画するデータ。background[][]を背景としてその上にbloc
 
 int y = 0; //ブロックの画面上でのy座標
 int x = 4; //ブロックの画面上でのx座標
-int oneline, twoline, threeline, fourline; //消したラインの数
-int is_gameover = 0; //ゲームオーバー判定。新しいブロックが初期位置に置けなければ1になる。
+
+int oneline, twoline, threeline, fourline; //得点を記憶する変数たち(消したラインの数を記録)
+
+int is_gameover = 0; //ゲームオーバーフラグ
 
 
 //７種類のブロックのデータ
