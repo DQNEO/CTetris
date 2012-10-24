@@ -8,6 +8,8 @@
 #define KEY_DOWN  ' '
 #define KEY_ROTATE 'x'
 
+#define INTERVAL 2000
+
 //関数プロトタイプ宣言
 void init();
 int  block_new();
@@ -91,7 +93,6 @@ int main()
     int time = 0; //タイマをリセット
 
     init();
-    int interval = 2000;
 
     //ゲームオーバーになるまで無限ループ
     while (1) {
@@ -101,7 +102,7 @@ int main()
             block_operate();
         }
 
-        if (time < interval) {
+        if (time < INTERVAL) {
             time++;
         } else {
             //ブロックを１マス下げる
