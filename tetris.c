@@ -9,7 +9,7 @@ void init();
 int  CreateBlock();
 void block_operate();
 
-int  CheckOverlap(int, int); //落下中のブロックが壁や固定済みブロックに接触していないか判別
+int  is_overlap(int, int);
 void MoveBlock(int, int); //落下中ブロックを一旦消して、任意の座標に移動させる
 int  block_rotate();
 void block_drop();
@@ -232,17 +232,17 @@ void block_operate()
     switch(key) {
 
         case 'l': // move right
-            if(!CheckOverlap(x+1, y)) {
+            if(!is_overlap(x+1, y)) {
                 MoveBlock(x+1, y);
             }
             break;
         case 'j': // move left
-            if(!CheckOverlap(x-1, y)) {
+            if(!is_overlap(x-1, y)) {
                 MoveBlock(x-1, y);
             }
             break;
         case ' ': // move down
-            if(!CheckOverlap(x, y+1)) {
+            if(!is_overlap(x, y+1)) {
                 MoveBlock(x, y+1);
             }
             break;
@@ -253,7 +253,8 @@ void block_operate()
 }
 
 //重なり検査
-int CheckOverlap(int x2, int y2)
+//落下中のブロックが壁や固定済みブロックに接触していないか判別
+int is_overlap(int x2, int y2)
 {
     int i, j; //forループ制御用変数
 
@@ -315,7 +316,7 @@ int block_rotate()
         }
     }
     //重なってるブロックが出てしまったらブロックを回転前に戻して中止
-    if(CheckOverlap(x, y)) {
+    if(is_overlap(x, y)) {
         for(i = 0; i<4; i++) {
             for(j = 0; j<4; j++) {
                 block[i][j] = temp[i][j];
@@ -342,7 +343,7 @@ int block_rotate()
 void block_drop()
 {
     //重なりがなければ移動
-    if(!CheckOverlap(x, y+1)) {
+    if(!is_overlap(x, y+1)) {
         MoveBlock(x, y+1);
     }
     //重なりがあれば壁にする
