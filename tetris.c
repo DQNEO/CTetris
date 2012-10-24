@@ -212,7 +212,7 @@ void render()
 void show_gameover()
 {
     view_clear();
-    printf("\n\n==========\nGAME OVER==========\n\n");
+    printf("\n\n==========\nGAME OVER\n==========\n\n");
 }
 
 //âÊñ ÇëSè¡ãé
