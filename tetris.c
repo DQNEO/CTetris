@@ -255,21 +255,24 @@ void block_operate()
     switch(key) {
 
         case KEY_RIGHT: // move right
+        case 'l': // move right
             if(!is_attached(x+1, y)) {
                 block_move(x+1, y);
             }
             break;
+
         case KEY_LEFT: // move left
             if(!is_attached(x-1, y)) {
                 block_move(x-1, y);
             }
             break;
         case KEY_DOWN: // move down
-            if(!is_attached(x, y+1)) {
-                block_move(x, y+1);
+            if(!is_attached(x, y+5)) {
+                block_move(x, y+5);
             }
             break;
         case KEY_ROTATE: // rotate
+        case 'c': // rotate
             block_rotate();
 
     }
