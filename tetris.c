@@ -10,7 +10,7 @@ int  CreateBlock();
 void block_operate();
 
 int  is_overlap(int, int);
-void MoveBlock(int, int); //落下中ブロックを一旦消して、任意の座標に移動させる
+void block_move(int, int);
 int  block_rotate();
 void block_drop();
 void block_lock();
@@ -233,17 +233,17 @@ void block_operate()
 
         case 'l': // move right
             if(!is_overlap(x+1, y)) {
-                MoveBlock(x+1, y);
+                block_move(x+1, y);
             }
             break;
         case 'j': // move left
             if(!is_overlap(x-1, y)) {
-                MoveBlock(x-1, y);
+                block_move(x-1, y);
             }
             break;
         case ' ': // move down
             if(!is_overlap(x, y+1)) {
-                MoveBlock(x, y+1);
+                block_move(x, y+1);
             }
             break;
         case 'k': // rotate
@@ -271,8 +271,8 @@ int is_overlap(int x2, int y2)
     return 0;
 }
 
-//移動
-void MoveBlock(int x2, int y2)
+//落下中ブロックを移動
+void block_move(int x2, int y2)
 {
     int i, j; //forループ制御用変数
 
@@ -344,7 +344,7 @@ void block_drop()
 {
     //重なりがなければ移動
     if(!is_overlap(x, y+1)) {
-        MoveBlock(x, y+1);
+        block_move(x, y+1);
     }
     //重なりがあれば壁にする
     else{
