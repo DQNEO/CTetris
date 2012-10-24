@@ -95,15 +95,15 @@ int main()
         }
 
         if (time < interval) {
-            //時間が来てなければタイマを１進める
             time++;
         } else {
-            //時間がきたらブロックを１マス落下させる。
+            //ブロックを１マス下げる
             DropBlock();
             //タイマをリセット
             time = 0;
         }
     }
+
     return 0;
 }
 
