@@ -131,9 +131,9 @@ void init()
     for(row = 0; row <= 20; row++) {
         for(col = 0; col <= 11; col++) {
             if((col == 0) || (col == 11) || (row == 20)) {
-                background[row][col] = 9;
+                background[row][col] = 9; //•Ç
             } else {
-                background[row][col] = 0;
+                background[row][col] = 0; //^‹ó
             }
             
             view_data[row][col] = background[row][col];
@@ -208,7 +208,7 @@ void view_render()
                 case 9:
                     printf(" ");
                     break;
-                default:
+                case 1:
                     printf("¡");
                     break;
             }
