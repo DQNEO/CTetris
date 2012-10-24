@@ -25,6 +25,8 @@ void view_render();
 void view_gameover(); 
 void view_clear();
 
+int rand_block_type();
+
 //グローバル変数
 int background[21][12];     // 壁と固定済みブロック用
 int block[4][4];            // 現在落下中のブロック
@@ -148,15 +150,13 @@ void init()
 int block_new()
 {
     int i, j; //forループ制御用の変数
-    int block_type; //ブロックの種類用。０～６の乱数を入れる
-
+    int block_type; //ブロックの種類。ランダムに決まる。
+    
     //まずブロックの座標を初期位置にリセット
     y = 0;
     x = 4;
 
-    //乱数を発生させ、その乱数を7で割った余り（０～６まで）でブロックの種類を決定
-    srand((unsigned)time(NULL));
-    block_type = rand() % 7;
+    block_type = rand_block_type();
 
     //ブロックデータの中からblock_typeに応じた種類のブロックを読み込む
     for(i = 0; i<4; i++) {
@@ -179,6 +179,13 @@ int block_new()
     }
 
     return 1;
+}
+
+//乱数を発生させ、その乱数を7で割った余り（０～６まで）でブロックの種類を決定
+int rand_block_type()
+{
+    srand((unsigned)time(NULL));
+    return rand() % 7;
 }
 
 //画面表示
