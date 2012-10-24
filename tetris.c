@@ -118,13 +118,13 @@ void init()
     for(i = 0; i <= 20; i++) {
         for(j = 0; j <= 11; j++) {
             if((j == 0) || (j == 11) || (i == 20)) {
-                field[i][j] = stage[i][j] = 9;
-            }
-            else {
-                field[i][j] = stage[i][j] = 0;
+                stage[i][j] = 9;
+            } else {
+                stage[i][j] = 0;
             }
             
-            
+
+            field[i][j] = stage[i][j];
 
         }
     }
