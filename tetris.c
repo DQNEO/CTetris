@@ -4,16 +4,19 @@
 #include <time.h>
 
 //関数プロトタイプ宣言
-void init(); //ゲーム起動直後の初期設定を行う関数。画面と壁のデータを初期化
-int  CreateBlock(); //新しいブロックを生成して次のブロックに発生させる
-void render(); //field[][]の中身に応じて、画面を描画する
-void block_operate(); //キー入力に応じてブロックに移動や回転等の処理を行わせる
+void init();
+
+int  CreateBlock();
+void block_operate();
+
 int  CheckOverlap(int, int); //落下中のブロックが壁や固定済みブロックに接触していないか判別
 void MoveBlock(int, int); //落下中ブロックを一旦消して、任意の座標に移動させる
 int  TurnBlock(); //ブロックの回転を処理する
 void DropBlock(); //ブロックを落下させる。下に移動できない場合ブロックをその位置に固定
 void LockBlock(); //着地したブロックを固定済みブロックに加える関数
 void CheckLines(); //ブロックが横一列にそろえばそこを消去後、上のブロックをそこに下ろす
+
+void render();
 void show_gameover(); 
 void view_clear();
 
@@ -109,7 +112,8 @@ int main()
     return 0;
 }
 
-//ゲームの初期化
+//ゲーム起動直後の初期設定。
+//画面と壁のデータを初期化
 void init()
 {
     int i, j;
@@ -132,7 +136,7 @@ void init()
     render();
 }
 
-//ブロック作成
+//新しいブロックを生成して次のブロックに発生させる
 int CreateBlock()
 {
     int i, j; //forループ制御用の変数
@@ -170,6 +174,7 @@ int CreateBlock()
 }
 
 //画面表示
+//field[][]の内容を画面に出力する
 void render()
 {
     int i, j;
@@ -213,7 +218,7 @@ void view_clear()
     system("cls");
 }
 
-//キー入力を受けてブロックを操作する
+//キー入力を受けてブロックを操作する(移動/回転)
 void block_operate()
 {
     char key; //受け付けたキーを保存する変数
