@@ -150,13 +150,14 @@ void init()
 int block_new()
 {
     int i, j; //forループ制御用の変数
-    int block_type; //ブロックの種類。ランダムに決まる。
+
+    //ブロックの種類。ランダムに決まる。
+    int block_type = rand_block_type();
     
     //まずブロックの座標を初期位置にリセット
     y = 0;
     x = 4;
 
-    block_type = rand_block_type();
 
     //ブロックデータの中からblock_typeに応じた種類のブロックを読み込む
     for(i = 0; i<4; i++) {
