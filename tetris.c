@@ -29,6 +29,11 @@ void view_clear();
 int rand_block_type();
 
 //グローバル変数
+
+const char *TILE_SPACE = "  ";
+const char *TILE_WALL  = "□";
+const char *TILE_BLOCK = "■";
+
 int background[21][12];     // 壁と固定済みブロック用
 int block[4][4];            // 現在落下中のブロック
 int view_data[21][12];      // 描画するデータ。background[][]を背景としてその上にblock[][]を重ねたもの
@@ -196,10 +201,6 @@ void view_render()
 {
     int row, col;
 
-    char *TILE_SPACE = "  ";
-    char *TILE_WALL  = "□";
-    char *TILE_BLOCK = "■";
-
     view_clear();
     char line[100] ="";
     //データに応じてブロックや空白を画面表示
@@ -232,7 +233,7 @@ void view_render()
 //ゲームオーバー画面を表示する
 void view_gameover()
 {
-    printf("\n    GAME OVER  \n");
+    printf("\n      GAME OVER  \n");
 }
 
 //画面を全消去
