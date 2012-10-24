@@ -193,15 +193,15 @@ int rand_block_type()
 //view_data[][]の内容を画面に出力する
 void view_render()
 {
-    int i, j;
+    int row, col;
 
     view_clear();
 
     //データに応じてブロックや空白を画面表示
-    for(i = 0; i<21; i++) {
-        for(j = 0; j < 12; j++) {
+    for(row = 0; row<21; row++) {
+        for(col = 0; col < 12; col++) {
 
-            switch(view_data[i][j]) {
+            switch(view_data[row][col]) {
                 case 0:
                     printf("  ");
                     break;
