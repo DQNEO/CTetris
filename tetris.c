@@ -5,10 +5,8 @@
 
 //関数プロトタイプ宣言
 void init();
-
 int  block_new();
 void block_operate();
-
 int  is_attached(int, int);
 void block_move(int, int);
 int  block_rotate();
