@@ -362,10 +362,14 @@ int block_drop()
     } else {
         // あれば壁にする
         block_lock();
-        if (! block_new()) {
+        
+        //新ブロックを生成
+        if (block_new()) {
+            view_render();
+        } else {
+            //生成時点で接地したらゲームオーバー
             return 0;
         }
-        view_render();
     }
     
     return 1;
