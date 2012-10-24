@@ -181,7 +181,7 @@ printf("\n１行消し：%d回２行消し：%d回３行消し：%d回４行消し：%d回\n",
 //ゲームオーバーの場合はGAME OVERを表示
 if(gameover){
 system("cls");
-printf("\n\n\n\n\nGAME OVER\n\n");
+printf("\n\n\n============\nGAME OVER\n============\n\n");
 }
 
 }
