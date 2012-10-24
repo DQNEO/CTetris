@@ -201,26 +201,28 @@ void view_render()
     char *TILE_BLOCK = "■";
 
     view_clear();
-    char line[20] ="";
+    char line[100] ="";
     //データに応じてブロックや空白を画面表示
     for(row = 0; row<21; row++) {
         for(col = 0; col < 12; col++) {
 
             switch(view_data[row][col]) {
                 case 0:
-                    printf("%s", TILE_SPACE);
+                    strcat(line, TILE_SPACE);
                     break;
                 case 9:
-                    printf("%s", TILE_WALL);
+                    strcat(line, TILE_WALL);
                     break;
                 case 1:
-                    printf("%s", TILE_BLOCK);
+                    strcat(line, TILE_BLOCK);
                     break;
             }
         }
 
-        printf("\n");
+        printf("%s\n", line);
+        line[0] = '\0';
     }
+
 
     //得点表示
     //printf("\n１行消し：%d回  ２行消し：%d回  ３行消し：%d回  ４行消し：%d回\n", oneline, twoline, threeline, fourline);
@@ -230,8 +232,7 @@ void view_render()
 //ゲームオーバー画面を表示する
 void view_gameover()
 {
-    view_clear();
-    printf("\n==========\n  GAME OVER  \n==========\n");
+    printf("\n    GAME OVER  \n");
 }
 
 //画面を全消去
