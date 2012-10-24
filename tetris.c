@@ -19,14 +19,14 @@ void block_drop();
 void block_lock();
 void check_and_delete();
 
-void render();
+void view_render();
 void view_gameover(); 
 void view_clear();
 
 //グローバル変数
 int background[21][12];     // 壁と固定済みブロック用
 int block[4][4];       // 現在落下中のブロック
-int field[21][12];     // 描画するデータ。background[][]を背景としてその上にblock[][]を重ねたもの
+int view_data[21][12];     // 描画するデータ。background[][]を背景としてその上にblock[][]を重ねたもの
 
 int y = 0; //ブロックのy座標
 int x = 4; //ブロックのx座標
@@ -132,13 +132,13 @@ void init()
                 background[i][j] = 0;
             }
             
-            field[i][j] = background[i][j];
+            view_data[i][j] = background[i][j];
         }
     }
 
 
     block_new(); //最初のブロックを生成
-    render();
+    view_render();
 }
 
 //新しいブロックを生成して次のブロックに発生させる
@@ -165,10 +165,10 @@ int block_new()
     //壁＋ブロックをフィールドへ
     for(i = 0; i<4; i++) {
         for(j = 0; j<4; j++) {
-            field[i][j+4] = background[i][j+4] + block[i][j];
+            view_data[i][j+4] = background[i][j+4] + block[i][j];
 
             //初期位置に置いたブロックが既に固定ブロックに重なっていればゲームオーバー
-            if(field[i][j+4] > 1) {
+            if(view_data[i][j+4] > 1) {
                 is_gameover = 1;
                 return 1;
             }
@@ -179,8 +179,8 @@ int block_new()
 }
 
 //画面表示
-//field[][]の内容を画面に出力する
-void render()
+//view_data[][]の内容を画面に出力する
+void view_render()
 {
     int i, j;
 
@@ -190,7 +190,7 @@ void render()
     for(i = 0; i<21; i++) {
         for(j = 0; j < 12; j++) {
 
-            switch(field[i][j]) {
+            switch(view_data[i][j]) {
                 case 0:
                     printf("  ");
                     break;
@@ -281,7 +281,7 @@ void block_move(int x2, int y2)
     //今までのブロックを消して
     for(i = 0; i<4; i++) {
         for(j = 0; j<4; j++) {
-            field[y+i][x+j] -= block[i][j];
+            view_data[y+i][x+j] -= block[i][j];
         }
     }
     //ブロックの座標を更新
@@ -291,11 +291,11 @@ void block_move(int x2, int y2)
     //新しい座標にブロックを入れなおし
     for(i = 0; i<4; i++) {
         for(j = 0; j<4; j++) {
-            field[y+i][x+j] += block[i][j];
+            view_data[y+i][x+j] += block[i][j];
         }
     }
 
-    render();
+    view_render();
 }
 
 //ブロックを回転する
@@ -330,12 +330,12 @@ int block_rotate()
     //一旦フィールドからブロック消して回転後のブロックを再表示
     for(i = 0; i<4; i++) {
         for(j = 0; j<4; j++) {
-            field[y+i][x+j] -= temp[i][j];
-            field[y+i][x+j] += block[i][j];
+            view_data[y+i][x+j] -= temp[i][j];
+            view_data[y+i][x+j] += block[i][j];
         }
     }
 
-    render();
+    view_render();
 
     return 0;
 }
@@ -352,7 +352,7 @@ void block_drop()
         // あれば壁にする
         block_lock();
         block_new();
-        render();
+        view_render();
     }
 }
 
@@ -364,7 +364,7 @@ void block_lock()
     //ブロックを壁に加える
     for(i = 0; i<21; i++) {
         for(j = 0; j<12; j++) {
-            background[i][j] = field[i][j];
+            background[i][j] = view_data[i][j];
         }
     }
 
@@ -373,7 +373,7 @@ void block_lock()
     //列完成判定後の壁をフィールドへ
     for(i = 0; i<21; i++) {
         for(j = 0; j<12; j++) {
-            field[i][j] = background[i][j];
+            view_data[i][j] = background[i][j];
         }
     }
 }
