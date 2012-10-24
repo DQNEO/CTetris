@@ -202,7 +202,7 @@ void view_render()
     int row, col;
 
     view_clear();
-    char line[25] ="";
+    char line[25*30] ="";
 
     //view_dataの中身(壁、ブロック、真空)を画面表示
     for(row = 0; row<21; row++) {
@@ -221,10 +221,11 @@ void view_render()
             }
         }
 
-        printf("%s\n", line);
-        line[0] = '\0';
+        strcat(line, "\n");
     }
 
+    strcat(line, "\0");
+    printf("%s", line);
 
     //得点表示
     //printf("\n１行消し：%d回  ２行消し：%d回  ３行消し：%d回  ４行消し：%d回\n", oneline, twoline, threeline, fourline);
