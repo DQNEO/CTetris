@@ -19,9 +19,9 @@ void view_clear();
 
 
 //グローバル変数
-int stage[21][12];     // 壁と固定済みブロック用
+int background[21][12];     // 壁と固定済みブロック用
 int block[4][4];       // 現在落下中のブロック
-int field[21][12];     // 描画するデータ。stage[][]を背景としてその上にblock[][]を重ねたもの
+int field[21][12];     // 描画するデータ。background[][]を背景としてその上にblock[][]を重ねたもの
 
 //７種類のブロックのデータ
 int block_list[7][4][4] = {
@@ -118,14 +118,12 @@ void init()
     for(i = 0; i <= 20; i++) {
         for(j = 0; j <= 11; j++) {
             if((j == 0) || (j == 11) || (i == 20)) {
-                stage[i][j] = 9;
+                background[i][j] = 9;
             } else {
-                stage[i][j] = 0;
+                background[i][j] = 0;
             }
             
-
-            field[i][j] = stage[i][j];
-
+            field[i][j] = background[i][j];
         }
     }
 
@@ -158,7 +156,7 @@ int CreateBlock()
     //壁＋ブロックをフィールドへ
     for(i = 0; i<4; i++) {
         for(j = 0; j<4; j++) {
-            field[i][j+4] = stage[i][j+4] + block[i][j];
+            field[i][j+4] = background[i][j+4] + block[i][j];
 
             //初期位置に置いたブロックが既に固定ブロックに重なっていればゲームオーバー
             if(field[i][j+4] > 1) {
@@ -255,7 +253,7 @@ int CheckOverlap(int x2, int y2)
     for(i = 0; i<4; i++) {
         for(j = 0; j<4; j++) {
             if(block[i][j]) {
-                if(stage[y2 + i][x2 + j] != 0) {
+                if(background[y2 + i][x2 + j] != 0) {
                     return 1;
                 }
             }
@@ -354,7 +352,7 @@ void LockBlock()
     //ブロックを壁に加える
     for(i = 0; i<21; i++) {
         for(j = 0; j<12; j++) {
-            stage[i][j] = field[i][j];
+            background[i][j] = field[i][j];
         }
     }
 
@@ -363,7 +361,7 @@ void LockBlock()
     //列完成判定後の壁をフィールドへ
     for(i = 0; i<21; i++) {
         for(j = 0; j<12; j++) {
-            field[i][j] = stage[i][j];
+            field[i][j] = background[i][j];
         }
     }
 }
@@ -380,7 +378,7 @@ void CheckLines()
             comp = 1;
 
             for(j = 1; j<11; j++) {
-                if(stage[i][j] == 0) {
+                if(background[i][j] == 0) {
                     comp = 0;
                 }
             }
@@ -393,14 +391,14 @@ void CheckLines()
 
         // 列を消去
         for(j = 1; j<11; j++) {
-            stage[i][j] = 0;
+            background[i][j] = 0;
         }
 
 
         //消えた列より上にあった固定ブロックを列の消えたところへ下ろす
         for(k = i; k>0; k--) {
             for(j = 1; j<11; j++) {
-                stage[k][j] = stage[k-1][j];
+                background[k][j] = background[k-1][j];
             }
         }
     }
