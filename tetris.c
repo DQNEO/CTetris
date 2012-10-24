@@ -13,7 +13,7 @@ int  CheckOverlap(int, int); //—‰º’†‚ÌƒuƒƒbƒN‚ª•Ç‚âŒÅ’èÏ‚İƒuƒƒbƒN‚ÉÚG‚µ‚Ä‚
 void MoveBlock(int, int); //—‰º’†ƒuƒƒbƒN‚ğˆê’UÁ‚µ‚ÄA”CˆÓ‚ÌÀ•W‚ÉˆÚ“®‚³‚¹‚é
 int  block_rotate();
 void block_drop();
-void LockBlock(); //’…’n‚µ‚½ƒuƒƒbƒN‚ğŒÅ’èÏ‚İƒuƒƒbƒN‚É‰Á‚¦‚éŠÖ”
+void block_lock();
 void CheckLines(); //ƒuƒƒbƒN‚ª‰¡ˆê—ñ‚É‚»‚ë‚¦‚Î‚»‚±‚ğÁ‹ŒãAã‚ÌƒuƒƒbƒN‚ğ‚»‚±‚É‰º‚ë‚·
 
 void render();
@@ -347,14 +347,14 @@ void block_drop()
     }
     //d‚È‚è‚ª‚ ‚ê‚Î•Ç‚É‚·‚é
     else{
-        LockBlock();
+        block_lock();
         CreateBlock();
         render();
     }
 }
 
-//’…’nŒã‚ÌƒuƒƒbƒN‚ğŒÅ’è‚µA‰¡ˆê—ñ‚ª‚»‚ë‚Á‚Ä‚é‚©‚Ì”»’è‚ğŒÄ‚Ño‚·
-void LockBlock()
+//’…’n‚µ‚½ƒuƒƒbƒN‚ğŒÅ’è‚µA‰¡ˆê—ñ‚ª‚»‚ë‚Á‚Ä‚é‚©‚Ì”»’è‚ğŒÄ‚Ño‚·
+void block_lock()
 {
     int i, j; //forƒ‹[ƒv§Œä—p•Ï”
 
