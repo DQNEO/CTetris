@@ -15,7 +15,7 @@ void block_operate();
 int  is_attached(int, int);
 void block_move(int, int);
 int  block_rotate();
-void block_drop();
+int  block_drop();
 void block_lock();
 void check_and_delete();
 
@@ -107,7 +107,10 @@ int main()
             time++;
         } else {
             //ブロックを１マス下げる
-            block_drop();
+            if (!block_drop()) {
+                //ゲームオーバー
+                break;
+            }
             //タイマをリセット
             time = 0;
         }
@@ -142,6 +145,7 @@ void init()
 }
 
 //新しいブロックを生成して次のブロックに発生させる
+//@return 0:ゲームオーバー, 1:ゲーム続く
 int block_new()
 {
     int i, j; //forループ制御用の変数
@@ -169,13 +173,13 @@ int block_new()
 
             //初期位置に置いたブロックが既に固定ブロックに重なっていればゲームオーバー
             if(view_data[i][j+4] > 1) {
-                is_gameover = 1;
-                return 1;
+                return 0;
             }
 
         }
     }
-    return 0;
+
+    return 1;
 }
 
 //画面表示
@@ -342,7 +346,7 @@ int block_rotate()
 
 //ブロックを落下させる。
 //下に接地した場合はその位置に固定
-void block_drop()
+int block_drop()
 {
     //重なりあるか判定
     if(!is_attached(x, y+1)) {
@@ -351,9 +355,13 @@ void block_drop()
     } else {
         // あれば壁にする
         block_lock();
-        block_new();
+        if (! block_new()) {
+            return 0;
+        }
         view_render();
     }
+    
+    return 1;
 }
 
 //着地したブロックを固定し、横一列がそろってるかの判定を呼び出す
