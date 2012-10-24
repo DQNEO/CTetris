@@ -79,7 +79,7 @@ int main()
             ControlBlock();
         }
         //時間がきたらブロックを１マス落下させる。時間が来てなければ時間を１だけインクリメント。
-        if(time < 20000){
+        if(time < 10000){
             time++;
         } else {
             DropBlock();
