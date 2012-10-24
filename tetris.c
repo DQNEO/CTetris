@@ -342,12 +342,12 @@ int block_rotate()
 //下に接地した場合はその位置に固定
 void block_drop()
 {
-    //重なりがなければ移動
+    //重なりあるか判定
     if(!is_overlap(x, y+1)) {
+        // なければ移動
         block_move(x, y+1);
-    }
-    //重なりがあれば壁にする
-    else{
+    } else {
+        // あれば壁にする
         block_lock();
         block_new();
         render();
