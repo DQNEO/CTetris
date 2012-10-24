@@ -69,7 +69,7 @@ int is_gameover = 0; //ƒQ[ƒ€ƒI[ƒo[”»’èBV‚µ‚¢ƒuƒƒbƒN‚ª‰ŠúˆÊ’u‚É’u‚¯‚È‚¯‚ê‚
 void Initialize(); //ƒQ[ƒ€‹N“®’¼Œã‚Ì‰Šúİ’è‚ğs‚¤ŠÖ”B‰æ–Ê‚Æ•Ç‚Ìƒf[ƒ^‚ğ‰Šú‰»
 int   CreateBlock(); //V‚µ‚¢ƒuƒƒbƒN‚ğ¶¬‚µ‚ÄŸ‚ÌƒuƒƒbƒN‚É”­¶‚³‚¹‚é
 void ShowGameField(); //field[][]‚Ì’†g‚É‰‚¶‚ÄA‰æ–Ê‚ğ•`‰æ‚·‚é
-void ControlBlock(); //ƒL[“ü—Í‚É‰‚¶‚ÄƒuƒƒbƒN‚ÉˆÚ“®‚â‰ñ“]“™‚Ìˆ—‚ğs‚í‚¹‚é
+void block_operate(); //ƒL[“ü—Í‚É‰‚¶‚ÄƒuƒƒbƒN‚ÉˆÚ“®‚â‰ñ“]“™‚Ìˆ—‚ğs‚í‚¹‚é
 int   CheckOverlap(int, int); //—‰º’†‚ÌƒuƒƒbƒN‚ª•Ç‚âŒÅ’èÏ‚İƒuƒƒbƒN‚ÉÚG‚µ‚Ä‚¢‚È‚¢‚©”»•Ê
 void MoveBlock(int, int); //—‰º’†ƒuƒƒbƒN‚ğˆê’UÁ‚µ‚ÄA”CˆÓ‚ÌÀ•W‚ÉˆÚ“®‚³‚¹‚é
 int   TurnBlock(); //ƒuƒƒbƒN‚Ì‰ñ“]‚ğˆ—‚·‚é
@@ -91,7 +91,7 @@ int main()
 
         //ƒL[“ü—Í‚ª‚ ‚ê‚ÎƒuƒƒbƒN‚ğ“®‚©‚·
         if(kbhit()){
-            ControlBlock();
+            block_operate();
         }
 
         if (time < interval) {
@@ -196,6 +196,8 @@ void ShowGameField()
     //printf("\n‚PsÁ‚µF%d‰ñ  ‚QsÁ‚µF%d‰ñ  ‚RsÁ‚µF%d‰ñ  ‚SsÁ‚µF%d‰ñ\n", oneline, twoline, threeline, fourline);
 }
 
+
+//ƒQ[ƒ€ƒI[ƒo[‰æ–Ê‚ğ•\¦‚·‚é
 void show_gameover()
 {
     system("cls");
@@ -203,8 +205,8 @@ void show_gameover()
 }
 
 
-//ƒL[“ü—Í‚É‰‚¶‚ÄƒuƒƒbƒN‚ğˆ—
-void ControlBlock()
+//ƒL[“ü—Í‚ğó‚¯‚ÄƒuƒƒbƒN‚ğ‘€ì‚·‚é
+void block_operate()
 {
     char key; //ó‚¯•t‚¯‚½ƒL[‚ğ•Û‘¶‚·‚é•Ï”
 
