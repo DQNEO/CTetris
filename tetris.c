@@ -76,8 +76,8 @@ int   TurnBlock(); //ブロックの回転を処理する
 void DropBlock(); //ブロックを落下させる。下に移動できない場合ブロックをその位置に固定
 void LockBlock(); //着地したブロックを固定済みブロックに加える関数
 void CheckLines(); //ブロックが横一列にそろえばそこを消去後、上のブロックをそこに下ろす
-
 void show_gameover(); 
+void view_clear();
 
 int main()
 {
@@ -171,7 +171,7 @@ void ShowGameField()
 {
     int i, j;
 
-    system("cls");
+    clear();
 
     //データに応じてブロックや空白を画面表示
     for(i = 0; i<21; i++) {
@@ -200,10 +200,15 @@ void ShowGameField()
 //ゲームオーバー画面を表示する
 void show_gameover()
 {
-    system("cls");
+    view_clear();
     printf("\n\n==========\nGAME OVER==========\n\n");
 }
 
+//画面を全消去
+void view_clear()
+{
+    system("cls");
+}
 
 //キー入力を受けてブロックを操作する
 void block_operate()
