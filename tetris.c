@@ -12,7 +12,7 @@ void block_operate();
 int  CheckOverlap(int, int); //落下中のブロックが壁や固定済みブロックに接触していないか判別
 void MoveBlock(int, int); //落下中ブロックを一旦消して、任意の座標に移動させる
 int  TurnBlock(); //ブロックの回転を処理する
-void DropBlock(); //ブロックを落下させる。下に移動できない場合ブロックをその位置に固定
+void block_drop();
 void LockBlock(); //着地したブロックを固定済みブロックに加える関数
 void CheckLines(); //ブロックが横一列にそろえばそこを消去後、上のブロックをそこに下ろす
 
@@ -105,7 +105,7 @@ int main()
             time++;
         } else {
             //ブロックを１マス下げる
-            DropBlock();
+            block_drop();
             //タイマをリセット
             time = 0;
         }
@@ -337,8 +337,9 @@ int TurnBlock()
     return 0;
 }
 
-//ブロックを落とす
-void DropBlock()
+//ブロックを落下させる。
+//下に接地した場合はその位置に固定
+void block_drop()
 {
     //重なりがなければ移動
     if(!CheckOverlap(x, y+1)) {
