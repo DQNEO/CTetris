@@ -6,7 +6,7 @@
 //関数プロトタイプ宣言
 void init(); //ゲーム起動直後の初期設定を行う関数。画面と壁のデータを初期化
 int  CreateBlock(); //新しいブロックを生成して次のブロックに発生させる
-void ShowGameField(); //field[][]の中身に応じて、画面を描画する
+void render(); //field[][]の中身に応じて、画面を描画する
 void block_operate(); //キー入力に応じてブロックに移動や回転等の処理を行わせる
 int  CheckOverlap(int, int); //落下中のブロックが壁や固定済みブロックに接触していないか判別
 void MoveBlock(int, int); //落下中ブロックを一旦消して、任意の座標に移動させる
@@ -112,7 +112,7 @@ int main()
 //ゲームの初期化
 void init()
 {
-    int i, j; //forループ制御用変数
+    int i, j;
 
     //画面と壁を初期設定
     for(i = 0; i <= 20; i++) {
@@ -127,7 +127,7 @@ void init()
     }
 
     CreateBlock(); //最初のブロック発生させる
-    ShowGameField(); //ゲーム直後の画面を描画
+    render(); //ゲーム直後の画面を描画
 }
 
 //ブロック作成
@@ -168,7 +168,7 @@ int CreateBlock()
 }
 
 //画面表示
-void ShowGameField()
+void render()
 {
     int i, j;
 
@@ -282,7 +282,7 @@ void MoveBlock(int x2, int y2)
         }
     }
 
-    ShowGameField();
+    render();
 }
 
 //ブロックを回転する処理
@@ -322,7 +322,7 @@ int TurnBlock()
         }
     }
 
-    ShowGameField();
+    render();
 
     return 0;
 }
@@ -338,7 +338,7 @@ void DropBlock()
     else{
         LockBlock();
         CreateBlock();
-        ShowGameField();
+        render();
     }
 }
 
