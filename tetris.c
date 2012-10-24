@@ -37,7 +37,7 @@ int is_gameover = 0; //ゲームオーバーフラグ
 
 
 //７種類のブロックのデータ
-int block_list[7][4][4] = {
+const int block_list[7][4][4] = {
     {
         {0,1,0,0},
         {0,1,0,0},
