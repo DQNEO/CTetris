@@ -172,7 +172,7 @@ void ShowGameField()
 {
     int i, j;
 
-    clear();
+    view_clear();
 
     //データに応じてブロックや空白を画面表示
     for(i = 0; i<21; i++) {
