@@ -123,18 +123,18 @@ int main()
 //‰æ–Ê‚Æ•Ç‚Ìƒf[ƒ^‚ğ‰Šú‰»
 void init()
 {
-    int i, j;
+    int row, col;
 
     //‰æ–Ê‚Æ•Ç‚ğ‰Šúİ’è
-    for(i = 0; i <= 20; i++) {
-        for(j = 0; j <= 11; j++) {
-            if((j == 0) || (j == 11) || (i == 20)) {
-                background[i][j] = 9;
+    for(row = 0; row <= 20; row++) {
+        for(col = 0; col <= 11; col++) {
+            if((col == 0) || (col == 11) || (row == 20)) {
+                background[row][col] = 9;
             } else {
-                background[i][j] = 0;
+                background[row][col] = 0;
             }
             
-            view_data[i][j] = background[i][j];
+            view_data[row][col] = background[row][col];
         }
     }
 
