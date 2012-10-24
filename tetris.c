@@ -86,10 +86,10 @@ int main()
     Initialize(); //初期化
     int interval = 20000;
 
-    //ゲームオーバーになるまでゲーム続行
+    //ゲームオーバーになるまで無限ループ
     while(!gameover){
 
-        //キー入力があればそれに応じて操作
+        //キー入力があればブロックを動かす
         if(kbhit()){
             ControlBlock();
         }
