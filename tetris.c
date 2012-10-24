@@ -200,9 +200,9 @@ int rand_block_type()
 void view_render()
 {
     int row, col;
+    char output_string[25*30] ="";
 
     view_clear();
-    char line[25*30] ="";
 
     //view_dataの中身(壁、ブロック、真空)を画面表示
     for(row = 0; row<21; row++) {
@@ -210,22 +210,22 @@ void view_render()
 
             switch(view_data[row][col]) {
                 case 0:
-                    strcat(line, TILE_SPACE);
+                    strcat(output_string, TILE_SPACE);
                     break;
                 case 9:
-                    strcat(line, TILE_WALL);
+                    strcat(output_string, TILE_WALL);
                     break;
                 case 1:
-                    strcat(line, TILE_BLOCK);
+                    strcat(output_string, TILE_BLOCK);
                     break;
             }
         }
 
-        strcat(line, "\n");
+        strcat(output_string, "\n");
     }
 
-    strcat(line, "\0");
-    printf("%s", line);
+    strcat(output_string, "\0");
+    printf("%s", output_string);
 
     //得点表示
     //printf("\n１行消し：%d回  ２行消し：%d回  ３行消し：%d回  ４行消し：%d回\n", oneline, twoline, threeline, fourline);
