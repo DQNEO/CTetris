@@ -189,32 +189,31 @@ printf("\n\n\n\n\nGAME OVER\n\n");
 //キー入力に応じてブロックを処理
 void ControlBlock()
 {
-char key; //受け付けたキーを保存する変数
+    char key; //受け付けたキーを保存する変数
 
-key = getch(); //キーから一文字入力
+    key = getch(); //キーから一文字入力
 
-//キーに応じて各方向へブロックを移動したり、回転させたりする
-switch(key) {
+    //キーに応じて各方向へブロックを移動したり、回転させたりする
+    switch(key) {
 
-case 'f':
-if(!CheckOverlap(x+1, y)) {
-MoveBlock(x+1, y);
-}
-break;
-case 's':
-if(!CheckOverlap(x-1, y)) {
-MoveBlock(x-1, y);
-}
-break;
-case 'd':
-if(!CheckOverlap(x, y+1)) {
-MoveBlock(x, y+1);
-}
-break;
-case ' ':
-TurnBlock();
-
-}
+        case 'f':
+            if(!CheckOverlap(x+1, y)) {
+                MoveBlock(x+1, y);
+            }
+            break;
+        case 's':
+            if(!CheckOverlap(x-1, y)) {
+                MoveBlock(x-1, y);
+            }
+            break;
+        case 'd':
+            if(!CheckOverlap(x, y+1)) {
+                MoveBlock(x, y+1);
+            }
+            break;
+        case ' ':
+            TurnBlock();
+    }
 }
 
 //重なり検査
