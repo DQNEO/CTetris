@@ -246,7 +246,7 @@ void block_operate()
                 block_move(x, y+1);
             }
             break;
-        case 'k': // rotate
+        case 'x': // rotate
             block_rotate();
 
     }
