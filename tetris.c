@@ -202,8 +202,9 @@ void view_render()
     int row, col;
 
     view_clear();
-    char line[100] ="";
-    //データに応じてブロックや空白を画面表示
+    char line[25] ="";
+
+    //view_dataの中身(壁、ブロック、真空)を画面表示
     for(row = 0; row<21; row++) {
         for(col = 0; col < 12; col++) {
 
