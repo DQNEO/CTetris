@@ -93,10 +93,12 @@ int main()
         if(kbhit()){
             ControlBlock();
         }
-        //時間がきたらブロックを１マス落下させる。時間が来てなければ時間を１だけインクリメント。
+
         if (time < interval) {
+            //時間が来てなければ時間を１だけインクリメント。
             time++;
         } else {
+            //時間がきたらブロックを１マス落下させる。
             DropBlock();
             time = 0;
         }
