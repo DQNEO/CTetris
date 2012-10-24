@@ -104,6 +104,7 @@ int main()
         }
     }
 
+    show_gameover();
     return 0;
 }
 
@@ -194,12 +195,6 @@ void ShowGameField()
 
     //得点表示
     //printf("\n１行消し：%d回  ２行消し：%d回  ３行消し：%d回  ４行消し：%d回\n", oneline, twoline, threeline, fourline);
-
-    //ゲームオーバーの場合はGAME OVERを表示
-    if(is_gameover){
-        show_gameover();
-    }
-
 }
 
 void show_gameover()
