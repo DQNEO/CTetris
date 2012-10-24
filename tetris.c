@@ -20,8 +20,8 @@ void view_clear();
 
 //グローバル変数
 int stage[21][12];     // 壁と固定済みブロック用
-int block[4][4];       // 現在落下中のブロックを入れる
-int field[21][12];     // 描画するデータ。stage[][]にblock[][]を重ねたもの
+int block[4][4];       // 現在落下中のブロック
+int field[21][12];     // 描画するデータ。stage[][]を背景としてその上にblock[][]を重ねたもの
 
 //７種類のブロックのデータ
 int block_list[7][4][4] = {
@@ -123,11 +123,15 @@ void init()
             else {
                 field[i][j] = stage[i][j] = 0;
             }
+            
+            
+
         }
     }
 
+
     CreateBlock(); //最初のブロック発生させる
-    render(); //ゲーム直後の画面を描画
+    render();
 }
 
 //ブロック作成
