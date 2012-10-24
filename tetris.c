@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <time.h>
+#include <string.h>
 
 #define KEY_LEFT  'j'
 #define KEY_RIGHT 'l'
@@ -195,24 +196,29 @@ void view_render()
 {
     int row, col;
 
-    view_clear();
+    char *TILE_SPACE = "  ";
+    char *TILE_WALL  = "□";
+    char *TILE_BLOCK = "■";
 
+    view_clear();
+    char line[20] ="";
     //データに応じてブロックや空白を画面表示
     for(row = 0; row<21; row++) {
         for(col = 0; col < 12; col++) {
 
             switch(view_data[row][col]) {
                 case 0:
-                    printf("  ");
+                    printf("%s", TILE_SPACE);
                     break;
                 case 9:
-                    printf("□");
+                    printf("%s", TILE_WALL);
                     break;
                 case 1:
-                    printf("■");
+                    printf("%s", TILE_BLOCK);
                     break;
             }
         }
+
         printf("\n");
     }
 
@@ -225,7 +231,7 @@ void view_render()
 void view_gameover()
 {
     view_clear();
-    printf("\n\n==========\nGAME OVER\n==========\n\n");
+    printf("\n==========\n  GAME OVER  \n==========\n");
 }
 
 //画面を全消去
