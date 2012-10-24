@@ -6,7 +6,7 @@
 //関数プロトタイプ宣言
 void init();
 
-int  CreateBlock();
+int  block_new();
 void block_operate();
 
 int  is_overlap(int, int);
@@ -135,12 +135,12 @@ void init()
     }
 
 
-    CreateBlock(); //最初のブロック発生させる
+    block_new(); //最初のブロックを生成
     render();
 }
 
 //新しいブロックを生成して次のブロックに発生させる
-int CreateBlock()
+int block_new()
 {
     int i, j; //forループ制御用の変数
     int block_type; //ブロックの種類用。０～６の乱数を入れる
@@ -349,7 +349,7 @@ void block_drop()
     //重なりがあれば壁にする
     else{
         block_lock();
-        CreateBlock();
+        block_new();
         render();
     }
 }
