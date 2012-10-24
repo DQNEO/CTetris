@@ -5,7 +5,7 @@
 #include <string.h>
 
 #define KEY_LEFT  'j'
-#define KEY_RIGHT 'l'
+#define KEY_RIGHT 'k'
 #define KEY_DOWN  ' '
 #define KEY_ROTATE 'x'
 
