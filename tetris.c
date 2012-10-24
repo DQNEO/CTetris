@@ -81,7 +81,7 @@ void CheckLines(); //ƒuƒƒbƒN‚ª‰¡ˆê—ñ‚É‚»‚ë‚¦‚Î‚»‚±‚ğÁ‹ŒãAã‚ÌƒuƒƒbƒN‚ğ‚»‚±‚
 
 int main()
 {
-    int time = 0; //ŠÔ‚ğƒJƒEƒ“ƒg
+    int time = 0; //ƒ^ƒCƒ}‚ğƒŠƒZƒbƒg
 
     Initialize(); //‰Šú‰»
     int interval = 20000;
@@ -95,11 +95,12 @@ int main()
         }
 
         if (time < interval) {
-            //ŠÔ‚ª—ˆ‚Ä‚È‚¯‚ê‚ÎŠÔ‚ğ‚Pi‚ß‚é
+            //ŠÔ‚ª—ˆ‚Ä‚È‚¯‚ê‚Îƒ^ƒCƒ}‚ğ‚Pi‚ß‚é
             time++;
         } else {
             //ŠÔ‚ª‚«‚½‚çƒuƒƒbƒN‚ğ‚Pƒ}ƒX—‰º‚³‚¹‚éB
             DropBlock();
+            //ƒ^ƒCƒ}‚ğƒŠƒZƒbƒg
             time = 0;
         }
     }
