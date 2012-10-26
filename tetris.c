@@ -41,7 +41,7 @@ int view_data[21][12];      // •`‰æ‚·‚éƒf[ƒ^Bbackground[][]‚ğ”wŒi‚Æ‚µ‚Ä‚»‚Ìã‚
 int y; //ƒuƒƒbƒN‚ÌyÀ•W
 int x; //ƒuƒƒbƒN‚ÌxÀ•W
 
-int oneline, twoline, threeline, fourline; //“¾“_‚ğ‹L‰¯‚·‚é•Ï”‚½‚¿(Á‚µ‚½ƒ‰ƒCƒ“‚Ì”‚ğ‹L˜^)
+int total_point = 0; //“¾“_‚ğ‹L‰¯‚·‚é•Ï”(Á‚µ‚½ƒ‰ƒCƒ“‚Ì”‚ğ‹L˜^)
 
 
 //‚Ví—Ş‚ÌƒuƒƒbƒN‚Ìƒf[ƒ^
@@ -229,6 +229,7 @@ void view_render()
 
     //“¾“_•\¦
     //printf("\n‚PsÁ‚µF%d‰ñ  ‚QsÁ‚µF%d‰ñ  ‚RsÁ‚µF%d‰ñ  ‚SsÁ‚µF%d‰ñ\n", oneline, twoline, threeline, fourline);
+    printf("        Total Point : %d\n", total_point * 100);
 }
 
 
@@ -449,6 +450,7 @@ void check_and_delete()
     }
 
     //“¯‚ÉÁ‚µ‚½ƒ‰ƒCƒ“‚Ì”‚ğƒJƒEƒ“ƒg
+    total_point += lines;
     switch(lines) {
         case 1:
             oneline++;
