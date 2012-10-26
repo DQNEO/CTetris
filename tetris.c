@@ -206,7 +206,7 @@ void view_render()
 
     //view_dataの中身(壁、ブロック、真空)を画面表示
     for(row = 0; row<21; row++) {
-        strcat(output_string ,"   ");
+        strcat(output_string ,"          ");
         for(col = 0; col < 12; col++) {
 
             switch(view_data[row][col]) {
@@ -230,14 +230,14 @@ void view_render()
     view_clear();
     printf("%s", output_string);
 
-    printf("        Total Point : %d\n", total_point);
+    printf("              Total Point : %d\n", total_point);
 }
 
 
 //ゲームオーバー画面を表示する
 void view_gameover()
 {
-    printf("\n      GAME OVER  \n");
+    printf("\n              GAME OVER  \n");
 }
 
 //画面を全消去
