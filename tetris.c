@@ -418,7 +418,7 @@ void check_and_delete()
 {
     int row, col, k; //forループ制御用
     int is_complete; //横一列がそろっていれば１、一つでも隙間があると０になる
-    int lines = 0; //同時に消したラインの数
+    int num_lines = 0; //同時に消したラインの数
 
     while(1) {
         for(row = 0; row<20; row++) {
@@ -433,7 +433,7 @@ void check_and_delete()
         }
         if (! is_complete) break;
 
-        lines++;
+        num_lines++;
 
 
         // 列を消去
@@ -451,7 +451,7 @@ void check_and_delete()
     }
 
     //同時に消したラインの数をカウント
-    total_point += add_points[lines];
+    total_point += add_points[num_lines];
 
 }
 
