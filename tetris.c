@@ -19,7 +19,7 @@ int  is_attached(int, int);
 void block_move(int, int);
 int  block_rotate();
 int  block_drop();
-void block_lock();
+int  block_lock();
 int check_and_delete();
 
 void view_render();
@@ -376,7 +376,8 @@ int block_drop()
         block_move(x, y+1);
     } else {
         // あれば壁にする
-        block_lock();
+        int num_lines = block_lock();
+        total_point += add_points[num_lines];
         
         //新ブロックを生成
         if (block_new()) {
@@ -391,9 +392,9 @@ int block_drop()
 }
 
 //着地したブロックを固定し、横一列がそろってるかの判定を呼び出す
-void block_lock()
+int block_lock()
 {
-    int i, j; //forループ制御用変数
+    int i, j, num_lines;
 
     //ブロックを壁に加える
     for(i = 0; i<21; i++) {
@@ -402,10 +403,7 @@ void block_lock()
         }
     }
 
-    int num_lines = check_and_delete(); //横一列がそろってるか判定して処理する関数を呼ぶ
-
-    //消したラインの数をポイントに変換して加算
-    total_point += add_points[num_lines];
+    num_lines = check_and_delete(); //横一列がそろってるか判定して処理する関数を呼ぶ
 
     //列完成判定後の壁を画面データへ
     for(i = 0; i<21; i++) {
@@ -413,6 +411,9 @@ void block_lock()
             view_data[i][j] = background[i][j];
         }
     }
+
+    //消したラインの数をポイントに変換して加算
+    return num_lines;
 }
 
 //横一段が完成しているか検査。
