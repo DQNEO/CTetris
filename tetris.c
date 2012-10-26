@@ -205,6 +205,7 @@ void view_render()
 
     //view_dataの中身(壁、ブロック、真空)を画面表示
     for(row = 0; row<21; row++) {
+        strcat(output_string ,"   ");
         for(col = 0; col < 12; col++) {
 
             switch(view_data[row][col]) {
