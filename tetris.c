@@ -20,13 +20,13 @@ void block_move(int, int);
 int  block_rotate();
 int  block_drop();
 int  block_lock();
-int check_and_delete();
+int  check_and_delete();
 
 void view_render();
 void view_gameover(); 
 void view_clear();
 
-int rand_block_type();
+int  rand_block_type();
 
 //ƒOƒ[ƒoƒ‹•Ï”
 
