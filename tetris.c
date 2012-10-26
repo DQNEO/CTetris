@@ -20,7 +20,7 @@ void block_move(int, int);
 int  block_rotate();
 int  block_drop();
 void block_lock();
-void check_and_delete();
+int check_and_delete();
 
 void view_render();
 void view_gameover(); 
@@ -402,9 +402,12 @@ void block_lock()
         }
     }
 
-    check_and_delete(); //横一列がそろってるか判定して処理する関数を呼ぶ
+    int num_lines = check_and_delete(); //横一列がそろってるか判定して処理する関数を呼ぶ
 
-    //列完成判定後の壁をフィールドへ
+    //消したラインの数をポイントに変換して加算
+    total_point += add_points[num_lines];
+
+    //列完成判定後の壁を画面データへ
     for(i = 0; i<21; i++) {
         for(j = 0; j<12; j++) {
             view_data[i][j] = background[i][j];
@@ -414,7 +417,7 @@ void block_lock()
 
 //横一段が完成しているか検査。
 //そろっていればその段を消して上のブロック群を下ろす
-void check_and_delete()
+int check_and_delete()
 {
     int row, col, k; //forループ制御用
     int is_complete; //横一列がそろっていれば１、一つでも隙間があると０になる
@@ -450,9 +453,7 @@ void check_and_delete()
         }
     }
 
-    //同時に消したラインの数をカウント
-    total_point += add_points[num_lines];
-
+    return num_lines;
 }
 
  
