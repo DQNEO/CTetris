@@ -190,56 +190,6 @@ int rand_block_type()
     return rand() % 7;
 }
 
-//画面表示
-//view_data[][]の内容を画面に出力する
-void view_render()
-{
-    int row, col;
-    char output_string[25*30] ="";
-
-
-    //view_dataの中身(壁、ブロック、真空)を画面表示
-    for(row = 0; row<21; row++) {
-        strcat(output_string ,"          ");
-        for(col = 0; col < 12; col++) {
-
-            switch(view_data[row][col]) {
-                case 0:
-                    strcat(output_string, TILE_SPACE);
-                    break;
-                case 9:
-                    strcat(output_string, TILE_WALL);
-                    break;
-                case 1:
-                    strcat(output_string, TILE_BLOCK);
-                    break;
-            }
-        }
-
-        strcat(output_string, "\n");
-    }
-
-    strcat(output_string, "\0");
-
-    view_clear();
-    printf("%s", output_string);
-
-    printf("              Total Point : %d\n", total_point);
-}
-
-
-//ゲームオーバー画面を表示する
-void view_gameover()
-{
-    printf("\n              GAME OVER  \n");
-}
-
-//画面を全消去
-void view_clear()
-{
-    system("cls");
-}
-
 //キー入力を受けてブロックを操作する(移動/回転)
 void block_operate()
 {
@@ -449,6 +399,56 @@ int check_and_delete()
     }
 
     return num_lines;
+}
+
+//画面表示
+//view_data[][]の内容を画面に出力する
+void view_render()
+{
+    int row, col;
+    char output_string[25*30] ="";
+
+
+    //view_dataの中身(壁、ブロック、真空)を画面表示
+    for(row = 0; row<21; row++) {
+        strcat(output_string ,"          ");
+        for(col = 0; col < 12; col++) {
+
+            switch(view_data[row][col]) {
+                case 0:
+                    strcat(output_string, TILE_SPACE);
+                    break;
+                case 9:
+                    strcat(output_string, TILE_WALL);
+                    break;
+                case 1:
+                    strcat(output_string, TILE_BLOCK);
+                    break;
+            }
+        }
+
+        strcat(output_string, "\n");
+    }
+
+    strcat(output_string, "\0");
+
+    view_clear();
+    printf("%s", output_string);
+
+    printf("              Total Point : %d\n", total_point);
+}
+
+
+//ゲームオーバー画面を表示する
+void view_gameover()
+{
+    printf("\n              GAME OVER  \n");
+}
+
+//画面を全消去
+void view_clear()
+{
+    system("cls");
 }
 
  
