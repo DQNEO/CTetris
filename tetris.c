@@ -202,7 +202,6 @@ void view_render()
     int row, col;
     char output_string[25*30] ="";
 
-    view_clear();
 
     //view_dataの中身(壁、ブロック、真空)を画面表示
     for(row = 0; row<21; row++) {
@@ -225,6 +224,8 @@ void view_render()
     }
 
     strcat(output_string, "\0");
+
+    view_clear();
     printf("%s", output_string);
 
     //得点表示
