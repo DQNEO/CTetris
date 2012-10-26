@@ -417,21 +417,21 @@ void block_lock()
 void check_and_delete()
 {
     int row, col, k; //forループ制御用
-    int comp; //横一列がそろっていれば１、一つでも隙間があると０になる
+    int is_complete; //横一列がそろっていれば１、一つでも隙間があると０になる
     int lines = 0; //同時に消したラインの数
 
     while(1) {
         for(row = 0; row<20; row++) {
-            comp = 1;
+            is_complete = 1;
 
             for(col = 1; col<11; col++) {
                 if(background[row][col] == 0) {
-                    comp = 0;
+                    is_complete = 0;
                 }
             }
-            if(comp == 1) break;
+            if(is_complete == 1) break;
         }
-        if(comp == 0) break;
+        if(is_complete == 0) break;
 
         lines++;
 
