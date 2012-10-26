@@ -29,7 +29,8 @@ void view_clear();
 int  rand_block_type();
 
 //ƒOƒ[ƒoƒ‹•Ï”
-
+const int NUM_ROWS = 20;
+const int NUM_COLS = 10;
 const char *TILE_SPACE = "  ";
 const char *TILE_WALL  = " ";
 const char *TILE_BLOCK = "¡";
