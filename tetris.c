@@ -229,9 +229,7 @@ void view_render()
     view_clear();
     printf("%s", output_string);
 
-    //得点表示
-    //printf("\n１行消し：%d回  ２行消し：%d回  ３行消し：%d回  ４行消し：%d回\n", oneline, twoline, threeline, fourline);
-    printf("        Total Point : %d\n", total_point * 100);
+    printf("        Total Point : %d\n", total_point);
 }
 
 
@@ -452,23 +450,25 @@ void check_and_delete()
     }
 
     //同時に消したラインの数をカウント
-    total_point += lines;
+    int add;
     switch(lines) {
         case 1:
-            oneline++;
+            add += 100;
             break;
         case 2:
-            twoline++;
+            add += 250;
             break;
         case 3:
-            threeline++;
+            add += 500;
             break;
         case 4:
-            fourline++;
+            add += 1000;
             break;
         default:
             break;
     }
+
+    total_point += add;
 
 }
 
