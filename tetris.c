@@ -429,9 +429,9 @@ void check_and_delete()
                     is_complete = 0;
                 }
             }
-            if(is_complete == 1) break;
+            if( is_complete) break;
         }
-        if(is_complete == 0) break;
+        if (! is_complete) break;
 
         lines++;
 
