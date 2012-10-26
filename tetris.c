@@ -34,9 +34,9 @@ const char *TILE_SPACE = "  ";
 const char *TILE_WALL  = "□";
 const char *TILE_BLOCK = "■";
 
-int background[21][12];     // 壁と固定済みブロック用
+int background[21][12];     // 壁と固定済みブロック
 int block[4][4];            // 現在落下中のブロック
-int view_data[21][12];      // 描画するデータ。background[][]を背景としてその上にblock[][]を重ねたもの
+int view_data[21][12];      // 画面データ。background[][]を背景としてその上にblock[][]を重ねたもの
 
 int y; //ブロックのy座標
 int x; //ブロックのx座標
