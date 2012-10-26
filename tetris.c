@@ -41,7 +41,8 @@ int view_data[21][12];      // •`‰æ‚·‚éƒf[ƒ^Bbackground[][]‚ğ”wŒi‚Æ‚µ‚Ä‚»‚Ìã‚
 int y; //ƒuƒƒbƒN‚ÌyÀ•W
 int x; //ƒuƒƒbƒN‚ÌxÀ•W
 
-int total_point = 0; //“¾“_‚ğ‹L‰¯‚·‚é•Ï”(Á‚µ‚½ƒ‰ƒCƒ“‚Ì”‚ğ‹L˜^)
+int total_point = 0; //‡Œv“¾“_
+int add_points[5] = {0,100,300,500,1000}; //“¯Á‚µ‚Ì‰ÁZƒ|ƒCƒ“ƒg
 
 
 //‚Ví—Ş‚ÌƒuƒƒbƒN‚Ìƒf[ƒ^
@@ -450,25 +451,7 @@ void check_and_delete()
     }
 
     //“¯‚ÉÁ‚µ‚½ƒ‰ƒCƒ“‚Ì”‚ğƒJƒEƒ“ƒg
-    int add;
-    switch(lines) {
-        case 1:
-            add += 100;
-            break;
-        case 2:
-            add += 250;
-            break;
-        case 3:
-            add += 500;
-            break;
-        case 4:
-            add += 1000;
-            break;
-        default:
-            break;
-    }
-
-    total_point += add;
+    total_point += add_points[lines];
 
 }
 
