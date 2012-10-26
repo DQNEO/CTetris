@@ -416,16 +416,16 @@ void block_lock()
 //そろっていればその段を消して上のブロック群を下ろす
 void check_and_delete()
 {
-    int i, j, k; //forループ制御用
+    int row, col, k; //forループ制御用
     int comp; //横一列がそろっていれば１、一つでも隙間があると０になる
     int lines = 0; //同時に消したラインの数
 
     while(1) {
-        for(i = 0; i<20; i++) {
+        for(row = 0; row<20; row++) {
             comp = 1;
 
-            for(j = 1; j<11; j++) {
-                if(background[i][j] == 0) {
+            for(col = 1; col<11; col++) {
+                if(background[row][col] == 0) {
                     comp = 0;
                 }
             }
@@ -437,15 +437,15 @@ void check_and_delete()
 
 
         // 列を消去
-        for(j = 1; j<11; j++) {
-            background[i][j] = 0;
+        for(col = 1; col<11; col++) {
+            background[row][col] = 0;
         }
 
 
         //消えた列より上にあった固定ブロックを列の消えたところへ下ろす
-        for(k = i; k>0; k--) {
-            for(j = 1; j<11; j++) {
-                background[k][j] = background[k-1][j];
+        for(k = row; k>0; k--) {
+            for(col = 1; col<11; col++) {
+                background[k][col] = background[k-1][col];
             }
         }
     }
