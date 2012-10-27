@@ -187,11 +187,10 @@ int block_new()
         for(c = 0 + myblock.pos.c ; c< 4 +  myblock.pos.c ; c++) {
             cell = background[r][c] + myblock.pattern[r][c - myblock.pos.c];
             //登場した新ブロックが既に固定ブロックに重なっていればゲームオーバー
-            //TODO:1がマジックナンバーなのでなんとかしたい。
-            if (cell > 1) {
+            if (cell == 2) {
                 return 0;
             }
-            view_data[r][c] = cell;
+            view_data[r][c] = cell; // 0 or 1
         }
     }
 
