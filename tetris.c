@@ -223,7 +223,6 @@ void block_operate()
     switch(key) {
 
         case KEY_RIGHT: // move right
-        case 'l': // move right
             if(!is_attached(+1, 0)) {
                 block_move(1, 0);
             }
@@ -240,7 +239,6 @@ void block_operate()
             }
             break;
         case KEY_ROTATE: // rotate
-        case 'c': // rotate
             block_rotate();
 
     }
