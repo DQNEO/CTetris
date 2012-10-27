@@ -39,10 +39,10 @@ const char *TILE_BLOCK = "■";
 int background[21][12];     // 壁と固定済みブロック
 int view_data[21][12];      // 画面データ。background[][]を背景としてその上にmyblock.pattern[][]を重ねたもの
 
-//ブロックのx,y座標
+//ブロックのr,c座標
 struct position {
-    int x;
-    int y;
+    int r;
+    int c;
 };
 
 //現在落下中のブロックを扱う構造体
@@ -167,13 +167,13 @@ int block_new()
 {
     int r, c; //forループ制御用の変数
 
-    //ブロックの種類。ランダムに決まる。
-    int block_type = rand_block_type();
     
     //まずブロックの座標を初期位置にリセット
-    myblock.pos.x = 4;
-    myblock.pos.y = 0;
+    myblock.pos.c = 4;
+    myblock.pos.r = 0;
 
+    //ブロックの種類。ランダムに決まる。
+    int block_type = rand_block_type();
     //ブロックパターンの中からblock_typeに応じた種類のブロックを読み込む
     copy_block(block_patterns[block_type], myblock.pattern);
 
@@ -256,7 +256,7 @@ int is_attached(int dx, int dy)
     for(i = 0; i<4; i++) {
         for(j = 0; j<4; j++) {
             if(myblock.pattern[i][j]) {
-                if(background[myblock.pos.y + dy + i][myblock.pos.x + dx + j] != 0) {
+                if(background[myblock.pos.r + dy + i][myblock.pos.c + dx + j] != 0) {
                     return 1;
                 }
             }
@@ -273,17 +273,17 @@ void block_move(int dx, int dy)
     //一度ブロックを消して
     for(i = 0; i<4; i++) {
         for(j = 0; j<4; j++) {
-            view_data[myblock.pos.y+i][myblock.pos.x+j] -= myblock.pattern[i][j];
+            view_data[myblock.pos.r+i][myblock.pos.c+j] -= myblock.pattern[i][j];
         }
     }
     //ブロックの座標を更新
-    myblock.pos.x += dx;
-    myblock.pos.y += dy;
+    myblock.pos.c += dx;
+    myblock.pos.r += dy;
 
     //新しい座標にブロックを入れなおし
     for(i = 0; i<4; i++) {
         for(j = 0; j<4; j++) {
-            view_data[myblock.pos.y+i][myblock.pos.x+j] += myblock.pattern[i][j];
+            view_data[myblock.pos.r+i][myblock.pos.c+j] += myblock.pattern[i][j];
         }
     }
 
@@ -314,8 +314,8 @@ int block_rotate()
     //一旦フィールドからブロック消して回転後のブロックを再表示
     for(i = 0; i<4; i++) {
         for(j = 0; j<4; j++) {
-            view_data[myblock.pos.y+i][myblock.pos.x+j] -= temp[i][j];
-            view_data[myblock.pos.y+i][myblock.pos.x+j] += myblock.pattern[i][j];
+            view_data[myblock.pos.r+i][myblock.pos.c+j] -= temp[i][j];
+            view_data[myblock.pos.r+i][myblock.pos.c+j] += myblock.pattern[i][j];
         }
     }
 
