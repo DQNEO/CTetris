@@ -40,7 +40,7 @@ char *tiles[3] = {
 };
 
 // 壁と固定済みブロック
-int background[21][12];
+int background[21][12] ={0};
 // 画面データ。background[][]を背景としてその上にmyblock.pattern[][]を重ねたもの
 int view_data[21][12];
 
@@ -147,16 +147,16 @@ int main()
 void init()
 {
     int row, col;
-
+    
     //画面と壁を初期設定
-    for(row = 0; row < NUM_ROWS + 1; row++) {
-        for(col = 0; col < NUM_COLS + 2; col++) {
-            if((col == 0) || (col == NUM_COLS + 1) || (row == NUM_ROWS)) {
-                background[row][col] = 2; //壁
-            } else {
-                background[row][col] = 0; //真空
-            }
-        }
+    for(row = 0; row < NUM_ROWS ; row++) {
+        background[row][0] = 2;            //左壁
+        background[row][NUM_COLS + 1] = 2; //右壁
+    }
+
+    //最下段は壁
+    for(col = 0; col < NUM_COLS + 2; col++) {
+        background[NUM_ROWS][col] = 2; //壁
     }
 
     copy_whole(background, view_data);
