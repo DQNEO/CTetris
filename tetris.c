@@ -421,16 +421,16 @@ int check_and_delete()
 //view_data[][]‚Ì“à—e‚ğ‰æ–Ê‚Éo—Í‚·‚é
 void view_render()
 {
-    int row, col;
+    int r, c;
     char output[25*30] ="";
     char offset [] = "        ";
 
     //view_data‚ğ‰æ–Ê•\¦
-    for(row = 0; row<NUM_ROWS + 1; row++) {
+    for(r = 0; r<NUM_ROWS + 1; r++) {
         strcat(output, offset);
-        for(col = 0; col < NUM_COLS + 2; col++) {
+        for(c = 0; c < NUM_COLS + 2; c++) {
 
-            switch(view_data[row][col]) {
+            switch(view_data[r][c]) {
                 case 0:
                     strcat(output, TILE_SPACE);
                     break;
