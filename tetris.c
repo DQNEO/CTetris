@@ -181,7 +181,12 @@ int block_new()
     for(i = 0; i<4; i++) {
         for(j = 0; j<4; j++) {
             view_data[i][j+4] = background[i][j+4] + myblock.pattern[i][j];
+        }
+    }
 
+    //ゲームオーバー判定
+    for(i = 0; i<4; i++) {
+        for(j = 0; j<4; j++) {
             //初期位置に置いたブロックが既に固定ブロックに重なっていればゲームオーバー
             if(view_data[i][j+4] > 1) {
                 return 0;
@@ -189,6 +194,8 @@ int block_new()
 
         }
     }
+
+
 
     return 1;
 }
