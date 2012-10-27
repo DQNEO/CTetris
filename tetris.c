@@ -26,6 +26,9 @@ void view_gameover();
 void view_clear();
 int  rand_block_type();
 
+void copy_block(int src[4][4], int dst[4][4]);
+
+
 //グローバル変数
 const int NUM_ROWS = 20;
 const int NUM_COLS = 10;
@@ -58,7 +61,7 @@ int add_points[5] = {0,100,300,500,1000}; //同時消しの加算ポイント
 
 
 //７種類のブロックの形状データ
-const int block_patterns[7][4][4] = {
+int block_patterns[7][4][4] = {
     {
         {0,1,0,0},
         {0,1,0,0},
@@ -171,12 +174,9 @@ int block_new()
     myblock.pos.x = 4;
     myblock.pos.y = 0;
 
-    //ブロックデータの中からblock_typeに応じた種類のブロックを読み込む
-    for(i = 0; i<4; i++) {
-        for(j = 0; j<4; j++) {
-            myblock.pattern[i][j] = block_patterns[block_type][i][j];
-        }
-    }
+    //ブロックパターンの中からblock_typeに応じた種類のブロックを読み込む
+    copy_block(block_patterns[block_type], myblock.pattern);
+
     //壁＋ブロックをフィールドへ
     for(i = 0; i<4; i++) {
         for(j = 0; j<4; j++) {
@@ -191,6 +191,16 @@ int block_new()
     }
 
     return 1;
+}
+
+void copy_block(int src[4][4], int dst[4][4])
+{
+    int i,j;
+    for(i = 0; i<4; i++) {
+        for(j = 0; j<4; j++) {
+            dst[i][j] = src[i][j];
+        }
+    }
 }
 
 //乱数を発生させ、その乱数を7で割った余り（０～６まで）でブロックの種類を決定
@@ -285,11 +295,7 @@ int block_rotate()
     int temp[4][4] = {0}; //ブロックを一時保存するための配列
 
     //ブロックを回転する前にtempにセーブ
-    for(i = 0; i<4; i++) {
-        for(j = 0; j<4; j++) {
-            temp[i][j] = myblock.pattern[i][j];
-        }
-    }
+    copy_block(myblock.pattern, temp);
 
     //ブロックを回転
     for(i = 0; i<4; i++) {
