@@ -204,18 +204,18 @@ void block_operate()
         case KEY_RIGHT: // move right
         case 'l': // move right
             if(!is_attached(x+1, y)) {
-                block_move(x+1, y);
+                block_move(1, 0);
             }
             break;
 
         case KEY_LEFT: // move left
             if(!is_attached(x-1, y)) {
-                block_move(x-1, y);
+                block_move(-1, 0);
             }
             break;
         case KEY_DOWN: // move down
             if(!is_attached(x, y+5)) {
-                block_move(x, y+5);
+                block_move(0, 5);
             }
             break;
         case KEY_ROTATE: // rotate
@@ -249,15 +249,15 @@ void block_move(int dx, int dy)
 {
     int i, j; //forループ制御用変数
 
-    //今までのブロックを消して
+    //一度ブロックを消して
     for(i = 0; i<4; i++) {
         for(j = 0; j<4; j++) {
             view_data[y+i][x+j] -= block[i][j];
         }
     }
     //ブロックの座標を更新
-    x = dx;
-    y = dy;
+    x += dx;
+    y += dy;
 
     //新しい座標にブロックを入れなおし
     for(i = 0; i<4; i++) {
@@ -317,8 +317,8 @@ int block_drop()
 {
     //重なりあるか判定
     if(!is_attached(x, y+1)) {
-        // なければ移動
-        block_move(x, y+1);
+        // なければ下に移動
+        block_move(0, 1);
     } else {
         // あれば壁にする
         int num_lines = block_lock();
