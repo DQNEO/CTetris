@@ -37,6 +37,13 @@ const char *TILE_SPACE = "  ";
 const char *TILE_WALL  = "□";
 const char *TILE_BLOCK = "■";
 
+char *tiles[3] = {
+ "  ",
+ "□",
+ "■",
+};
+
+
 int background[21][12];     // 壁と固定済みブロック
 int view_data[21][12];      // 画面データ。background[][]を背景としてその上にmyblock.pattern[][]を重ねたもの
 
