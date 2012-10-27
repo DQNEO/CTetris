@@ -422,6 +422,8 @@ int check_and_delete()
 void view_render()
 {
     int r, c;
+    char *cell;
+    
     char output[25*30] ="";
     char offset [] = "        ";
 
@@ -430,19 +432,22 @@ void view_render()
         strcat(output, offset);
         for(c = 0; c < NUM_COLS + 2; c++) {
 
+            //switchではなく配列で値を決定したい。
             switch(view_data[r][c]) {
                 case 0:
-                    strcat(output, TILE_SPACE);
+                    cell = (char *)TILE_SPACE;
                     break;
                 case 9:
-                    strcat(output, TILE_WALL);
+                    cell = (char *)TILE_WALL;
                     break;
                 case 1:
-                    strcat(output, TILE_BLOCK);
+                    cell = (char *) TILE_BLOCK;
                     break;
             };
-        }
 
+            //1セル追加
+            strcat(output, cell);
+        }
         strcat(output, "\n");
     }
 
