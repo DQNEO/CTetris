@@ -173,9 +173,9 @@ int block_new()
     myblock.pos.r = 0;
 
     //ブロックの種類。ランダムに決まる。
-    int block_type = rand_block_type();
+    int new_block_type = rand_block_type();
     //ブロックパターンの中からblock_typeに応じた種類のブロックを読み込む
-    copy_block(block_patterns[block_type], myblock.pattern);
+    copy_block(block_patterns[new_block_type], myblock.pattern);
 
     //壁＋ブロックをフィールドへ
     //TODO:ここの処理がわかりにくい。直感的でない。
