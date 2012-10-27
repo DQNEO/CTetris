@@ -27,6 +27,7 @@ void view_clear();
 int  rand_block_type();
 
 void copy_block(int src[4][4], int dst[4][4]);
+void copy_whole(int src[21][12], int dst[21][12])
 
 
 //グローバル変数
@@ -421,34 +422,34 @@ int check_and_delete()
 void view_render()
 {
     int row, col;
-    char output_string[25*30] ="";
+    char output[25*30] ="";
 
 
     //view_dataの中身(壁、ブロック、真空)を画面表示
     for(row = 0; row<NUM_ROWS + 1; row++) {
-        strcat(output_string ,"          ");
+        strcat(output ,"          ");
         for(col = 0; col < NUM_COLS + 2; col++) {
 
             switch(view_data[row][col]) {
                 case 0:
-                    strcat(output_string, TILE_SPACE);
+                    strcat(output, TILE_SPACE);
                     break;
                 case 9:
-                    strcat(output_string, TILE_WALL);
+                    strcat(output, TILE_WALL);
                     break;
                 case 1:
-                    strcat(output_string, TILE_BLOCK);
+                    strcat(output, TILE_BLOCK);
                     break;
             }
         }
 
-        strcat(output_string, "\n");
+        strcat(output, "\n");
     }
 
-    strcat(output_string, "\0");
+    strcat(output, "\0");
 
     view_clear();
-    printf("%s", output_string);
+    printf("%s", output);
 
     printf("              Total Point : %d\n", total_point);
 }
