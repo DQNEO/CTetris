@@ -39,8 +39,8 @@ const char *TILE_BLOCK = "■";
 
 char *tiles[3] = {
  "  ",
- "□",
  "■",
+ "□",
 };
 
 
@@ -438,23 +438,11 @@ void view_render()
     for(r = 0; r<NUM_ROWS + 1; r++) {
         strcat(output, offset);
         for(c = 0; c < NUM_COLS + 2; c++) {
-
-            //switchではなく配列で値を決定したい。
-            switch(view_data[r][c]) {
-                case 0:
-                    cell = (char *)TILE_SPACE;
-                    break;
-                case 1:
-                    cell = (char *) TILE_BLOCK;
-                    break;
-                case 2:
-                    cell = (char *)TILE_WALL;
-                    break;
-            };
-
             //1セル追加
+            cell = tiles[view_data[r][c]];
             strcat(output, cell);
         }
+        //1段終わり
         strcat(output, "\n");
     }
 
