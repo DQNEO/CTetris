@@ -129,8 +129,8 @@ void block_operate()
             }
             break;
         case KEY_DOWN: // move down
-            if(!is_attached(0, +5)) {
-                block_move(0, +5);
+            if(!is_attached(0, +1)) {
+                block_move(0, +1);
             }
             break;
         case KEY_ROTATE: // rotate
