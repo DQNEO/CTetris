@@ -33,9 +33,6 @@ void copy_whole(int src[21][12], int dst[21][12]);
 //ƒOƒ[ƒoƒ‹•Ï”
 const int NUM_ROWS = 20;
 const int NUM_COLS = 10;
-const char *TILE_SPACE = "  ";
-const char *TILE_WALL  = " ";
-const char *TILE_BLOCK = "¡";
 
 char *tiles[3] = {
  "  ",
