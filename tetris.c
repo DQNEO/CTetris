@@ -254,8 +254,8 @@ int is_attached(int dx, int dy)
 
     for(r = 0; r<4; r++) {
         for(c = 0; c<4; c++) {
-            if(myblock.pattern[r][c] == 1 &&
-                background[myblock.pos.r + dy + r][myblock.pos.c + dx + c] > 0) {
+            if(myblock.pattern[r][c] &&
+                background[myblock.pos.r + dy + r][myblock.pos.c + dx + c]) {
                     return 1;
             }
         }
