@@ -42,6 +42,13 @@ int view_data[21][12];      // 画面データ。background[][]を背景としてその上にblo
 int y; //ブロックのy座標
 int x; //ブロックのx座標
 
+struct position {
+    int x;
+    int y;
+};
+
+struct position pos;
+
 int total_point = 0; //合計得点
 int add_points[5] = {0,100,300,500,1000}; //同時消しの加算ポイント
 
@@ -159,7 +166,7 @@ int block_new()
     //まずブロックの座標を初期位置にリセット
     y = 0;
     x = 4;
-
+    pos.x = 4; pos.y = 0;
 
     //ブロックデータの中からblock_typeに応じた種類のブロックを読み込む
     for(i = 0; i<4; i++) {
@@ -235,7 +242,7 @@ int is_attached(int dx, int dy)
     for(i = 0; i<4; i++) {
         for(j = 0; j<4; j++) {
             if(block[i][j]) {
-                if(background[y + dy + i][x + dx + j] != 0) {
+                if(background[pos.y + dy + i][pos.x + dx + j] != 0) {
                     return 1;
                 }
             }
@@ -256,13 +263,13 @@ void block_move(int dx, int dy)
         }
     }
     //ブロックの座標を更新
-    x += dx;
-    y += dy;
+    pos.x = (x += dx);
+    pos.y = (y += dy);
 
     //新しい座標にブロックを入れなおし
     for(i = 0; i<4; i++) {
         for(j = 0; j<4; j++) {
-            view_data[y+i][x+j] += block[i][j];
+            view_data[pos.y+i][pos.x+j] += block[i][j];
         }
     }
 
@@ -301,8 +308,8 @@ int block_rotate()
     //一旦フィールドからブロック消して回転後のブロックを再表示
     for(i = 0; i<4; i++) {
         for(j = 0; j<4; j++) {
-            view_data[y+i][x+j] -= temp[i][j];
-            view_data[y+i][x+j] += block[i][j];
+            view_data[pos.y+i][pos.x+j] -= temp[i][j];
+            view_data[pos.y+i][pos.x+j] += block[i][j];
         }
     }
 
