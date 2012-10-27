@@ -425,7 +425,7 @@ void view_render()
     char output[25*30] ="";
     char offset [] = "        ";
 
-    //view_dataの中身(壁、ブロック、真空)を画面表示
+    //view_dataを画面表示
     for(row = 0; row<NUM_ROWS + 1; row++) {
         strcat(output, offset);
         for(col = 0; col < NUM_COLS + 2; col++) {
