@@ -148,7 +148,7 @@ void init()
 {
     int row, col;
     
-    //画面と壁を初期設定
+    //壁を初期化
     for(row = 0; row < NUM_ROWS ; row++) {
         background[row][0] = 2;            //左壁
         background[row][NUM_COLS + 1] = 2; //右壁
@@ -161,6 +161,7 @@ void init()
 
     copy_whole(background, view_data);
     block_new(); //最初のブロックを生成
+    
     view_render();
 }
 
