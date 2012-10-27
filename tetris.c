@@ -167,8 +167,8 @@ int block_new()
     int block_type = rand_block_type();
     
     //まずブロックの座標を初期位置にリセット
-    pos.x = 4;
-    pos.y = 0;
+    myblock.pos.x = 4;
+    myblock.pos.y = 0;
 
     //ブロックデータの中からblock_typeに応じた種類のブロックを読み込む
     for(i = 0; i<4; i++) {
@@ -243,7 +243,7 @@ int is_attached(int dx, int dy)
     for(i = 0; i<4; i++) {
         for(j = 0; j<4; j++) {
             if(block_pattern[i][j]) {
-                if(background[pos.y + dy + i][pos.x + dx + j] != 0) {
+                if(background[myblock.pos.y + dy + i][myblock.pos.x + dx + j] != 0) {
                     return 1;
                 }
             }
@@ -260,17 +260,17 @@ void block_move(int dx, int dy)
     //一度ブロックを消して
     for(i = 0; i<4; i++) {
         for(j = 0; j<4; j++) {
-            view_data[pos.y+i][pos.x+j] -= block_pattern[i][j];
+            view_data[myblock.pos.y+i][myblock.pos.x+j] -= block_pattern[i][j];
         }
     }
     //ブロックの座標を更新
-    pos.x += dx;
-    pos.y += dy;
+    myblock.pos.x += dx;
+    myblock.pos.y += dy;
 
     //新しい座標にブロックを入れなおし
     for(i = 0; i<4; i++) {
         for(j = 0; j<4; j++) {
-            view_data[pos.y+i][pos.x+j] += block_pattern[i][j];
+            view_data[myblock.pos.y+i][myblock.pos.x+j] += block_pattern[i][j];
         }
     }
 
@@ -309,8 +309,8 @@ int block_rotate()
     //一旦フィールドからブロック消して回転後のブロックを再表示
     for(i = 0; i<4; i++) {
         for(j = 0; j<4; j++) {
-            view_data[pos.y+i][pos.x+j] -= temp[i][j];
-            view_data[pos.y+i][pos.x+j] += block_pattern[i][j];
+            view_data[myblock.pos.y+i][myblock.pos.x+j] -= temp[i][j];
+            view_data[myblock.pos.y+i][myblock.pos.x+j] += block_pattern[i][j];
         }
     }
 
