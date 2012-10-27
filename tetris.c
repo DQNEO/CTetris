@@ -203,18 +203,18 @@ void block_operate()
 
         case KEY_RIGHT: // move right
         case 'l': // move right
-            if(!is_attached(x+1, y)) {
+            if(!is_attached(+1, 0)) {
                 block_move(1, 0);
             }
             break;
 
         case KEY_LEFT: // move left
-            if(!is_attached(x-1, y)) {
+            if(!is_attached(-1, 0)) {
                 block_move(-1, 0);
             }
             break;
         case KEY_DOWN: // move down
-            if(!is_attached(x, y+5)) {
+            if(!is_attached(0, +5)) {
                 block_move(0, 5);
             }
             break;
@@ -227,7 +227,7 @@ void block_operate()
 
 //重なり検査
 //落下中のブロックが壁や固定済みブロックに接触していないか判別
-int is_attached(int x2, int y2)
+int is_attached(int dx, int dy)
 {
     int i, j; //forループ制御用変数
 
@@ -235,7 +235,7 @@ int is_attached(int x2, int y2)
     for(i = 0; i<4; i++) {
         for(j = 0; j<4; j++) {
             if(block[i][j]) {
-                if(background[y2 + i][x2 + j] != 0) {
+                if(background[y + dy + i][x + dx + j] != 0) {
                     return 1;
                 }
             }
@@ -289,7 +289,7 @@ int block_rotate()
         }
     }
     //重なってるブロックが出てしまったらブロックを回転前に戻して中止
-    if(is_attached(x, y)) {
+    if(is_attached(0, 0)) {
         for(i = 0; i<4; i++) {
             for(j = 0; j<4; j++) {
                 block[i][j] = temp[i][j];
@@ -316,7 +316,7 @@ int block_rotate()
 int block_drop()
 {
     //重なりあるか判定
-    if(!is_attached(x, y+1)) {
+    if(!is_attached(0, 1)) {
         // なければ下に移動
         block_move(0, 1);
     } else {
