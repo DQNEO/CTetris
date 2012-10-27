@@ -34,7 +34,6 @@ const char *TILE_WALL  = "□";
 const char *TILE_BLOCK = "■";
 
 int background[21][12];     // 壁と固定済みブロック
-//int myblock.pattern[4][4];            // 現在落下中のブロックの形状データ
 int view_data[21][12];      // 画面データ。background[][]を背景としてその上にmyblock.pattern[][]を重ねたもの
 
 //ブロックのx,y座標
@@ -43,8 +42,11 @@ struct position {
     int y;
 };
 
+//現在落下中のブロックを扱う構造体
 struct block {
+    //位置データ
     struct position pos;
+    //形状データ
     int pattern[4][4];
 };
 
