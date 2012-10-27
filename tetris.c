@@ -48,7 +48,6 @@ struct block {
     int pattern[4][4];
 };
 
-struct position pos;
 struct block myblock;
 
 
