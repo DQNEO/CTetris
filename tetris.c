@@ -325,9 +325,9 @@ int block_rotate()
 int block_drop()
 {
     //重なりあるか判定
-    if(!is_attached(0, 1)) {
+    if(!is_attached(0, +1)) {
         // なければ下に移動
-        block_move(0, 1);
+        block_move(0, +1);
     } else {
         // あれば壁にする
         int num_lines = block_lock();
@@ -345,26 +345,31 @@ int block_drop()
     return 1;
 }
 
+void copy_whole(int src[21][12], int dst[21][12])
+{
+    int i,j;
+
+    //ブロックを壁に加える
+    for(i = 0; i<NUM_ROWS + 1; i++) {
+        for(j = 0; j<NUM_COLS + 2; j++) {
+            dst[i][j] = src[i][j];
+        }
+    }
+}
+
 //着地したブロックを固定し、横一列がそろってるかの判定を呼び出す
 int block_lock()
 {
     int i, j, num_lines;
 
-    //ブロックを壁に加える
-    for(i = 0; i<NUM_ROWS + 1; i++) {
-        for(j = 0; j<NUM_COLS + 2; j++) {
-            background[i][j] = view_data[i][j];
-        }
-    }
+    //ブロックを背景に合体させる
+    copy_whole(view_data, background);
+    
+    //横一列がそろってるか判定して処理する関数を呼ぶ
+    num_lines = check_and_delete();
 
-    num_lines = check_and_delete(); //横一列がそろってるか判定して処理する関数を呼ぶ
-
-    //列完成判定後の壁を画面データへ
-    for(i = 0; i< NUM_ROWS+1; i++) {
-        for(j = 0; j< NUM_COLS + 2; j++) {
-            view_data[i][j] = background[i][j];
-        }
-    }
+    //列完成判定後の背景を画面データへ反映
+    copy_whole(background, view_data);
 
     //消したラインの数
     return num_lines;
