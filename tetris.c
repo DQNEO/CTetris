@@ -197,6 +197,7 @@ int block_new()
     return 1;
 }
 
+//ブロックパターンをコピーする
 void copy_block(int src[4][4], int dst[4][4])
 {
     int i,j;
