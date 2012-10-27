@@ -195,8 +195,6 @@ int block_new()
         }
     }
 
-
-
     return 1;
 }
 
