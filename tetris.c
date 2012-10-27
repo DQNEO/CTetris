@@ -39,9 +39,7 @@ int background[21][12];     // 壁と固定済みブロック
 int block[4][4];            // 現在落下中のブロック
 int view_data[21][12];      // 画面データ。background[][]を背景としてその上にblock[][]を重ねたもの
 
-int y; //ブロックのy座標
-int x; //ブロックのx座標
-
+//ブロックのx,y座標
 struct position {
     int x;
     int y;
@@ -164,9 +162,8 @@ int block_new()
     int block_type = rand_block_type();
     
     //まずブロックの座標を初期位置にリセット
-    y = 0;
-    x = 4;
-    pos.x = 4; pos.y = 0;
+    pos.x = 4;
+    pos.y = 0;
 
     //ブロックデータの中からblock_typeに応じた種類のブロックを読み込む
     for(i = 0; i<4; i++) {
@@ -259,12 +256,12 @@ void block_move(int dx, int dy)
     //一度ブロックを消して
     for(i = 0; i<4; i++) {
         for(j = 0; j<4; j++) {
-            view_data[y+i][x+j] -= block[i][j];
+            view_data[pos.y+i][pos.x+j] -= block[i][j];
         }
     }
     //ブロックの座標を更新
-    pos.x = (x += dx);
-    pos.y = (y += dy);
+    pos.x += dx;
+    pos.y += dy;
 
     //新しい座標にブロックを入れなおし
     for(i = 0; i<4; i++) {
