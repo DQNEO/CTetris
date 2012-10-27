@@ -446,8 +446,6 @@ void view_render()
         strcat(output, "\n");
     }
 
-    strcat(output, "\0");
-
     view_clear();
     printf("%s", output);
 
