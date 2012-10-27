@@ -34,8 +34,8 @@ const char *TILE_WALL  = "□";
 const char *TILE_BLOCK = "■";
 
 int background[21][12];     // 壁と固定済みブロック
-int block_pattern[4][4];            // 現在落下中のブロックの形状データ
-int view_data[21][12];      // 画面データ。background[][]を背景としてその上にblock_pattern[][]を重ねたもの
+//int myblock.pattern[4][4];            // 現在落下中のブロックの形状データ
+int view_data[21][12];      // 画面データ。background[][]を背景としてその上にmyblock.pattern[][]を重ねたもの
 
 //ブロックのx,y座標
 struct position {
@@ -172,13 +172,13 @@ int block_new()
     //ブロックデータの中からblock_typeに応じた種類のブロックを読み込む
     for(i = 0; i<4; i++) {
         for(j = 0; j<4; j++) {
-            block_pattern[i][j] = block_patterns[block_type][i][j];
+            myblock.pattern[i][j] = block_patterns[block_type][i][j];
         }
     }
     //壁＋ブロックをフィールドへ
     for(i = 0; i<4; i++) {
         for(j = 0; j<4; j++) {
-            view_data[i][j+4] = background[i][j+4] + block_pattern[i][j];
+            view_data[i][j+4] = background[i][j+4] + myblock.pattern[i][j];
 
             //初期位置に置いたブロックが既に固定ブロックに重なっていればゲームオーバー
             if(view_data[i][j+4] > 1) {
@@ -241,7 +241,7 @@ int is_attached(int dx, int dy)
     //ブロックが向かう位置に、固定ブロックもしくは壁があるかどうかを検査
     for(i = 0; i<4; i++) {
         for(j = 0; j<4; j++) {
-            if(block_pattern[i][j]) {
+            if(myblock.pattern[i][j]) {
                 if(background[myblock.pos.y + dy + i][myblock.pos.x + dx + j] != 0) {
                     return 1;
                 }
@@ -259,7 +259,7 @@ void block_move(int dx, int dy)
     //一度ブロックを消して
     for(i = 0; i<4; i++) {
         for(j = 0; j<4; j++) {
-            view_data[myblock.pos.y+i][myblock.pos.x+j] -= block_pattern[i][j];
+            view_data[myblock.pos.y+i][myblock.pos.x+j] -= myblock.pattern[i][j];
         }
     }
     //ブロックの座標を更新
@@ -269,7 +269,7 @@ void block_move(int dx, int dy)
     //新しい座標にブロックを入れなおし
     for(i = 0; i<4; i++) {
         for(j = 0; j<4; j++) {
-            view_data[myblock.pos.y+i][myblock.pos.x+j] += block_pattern[i][j];
+            view_data[myblock.pos.y+i][myblock.pos.x+j] += myblock.pattern[i][j];
         }
     }
 
@@ -285,21 +285,21 @@ int block_rotate()
     //ブロックを回転する前にtempにセーブ
     for(i = 0; i<4; i++) {
         for(j = 0; j<4; j++) {
-            temp[i][j] = block_pattern[i][j];
+            temp[i][j] = myblock.pattern[i][j];
         }
     }
 
     //ブロックを回転
     for(i = 0; i<4; i++) {
         for(j = 0; j<4; j++) {
-            block_pattern[i][j] = temp[3-j][i];
+            myblock.pattern[i][j] = temp[3-j][i];
         }
     }
     //重なってるブロックが出てしまったらブロックを回転前に戻して中止
     if(is_attached(0, 0)) {
         for(i = 0; i<4; i++) {
             for(j = 0; j<4; j++) {
-                block_pattern[i][j] = temp[i][j];
+                myblock.pattern[i][j] = temp[i][j];
             }
         }
         return 1;
@@ -309,7 +309,7 @@ int block_rotate()
     for(i = 0; i<4; i++) {
         for(j = 0; j<4; j++) {
             view_data[myblock.pos.y+i][myblock.pos.x+j] -= temp[i][j];
-            view_data[myblock.pos.y+i][myblock.pos.x+j] += block_pattern[i][j];
+            view_data[myblock.pos.y+i][myblock.pos.x+j] += myblock.pattern[i][j];
         }
     }
 
