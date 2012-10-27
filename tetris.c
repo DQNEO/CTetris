@@ -131,8 +131,8 @@ void init()
 
     //画面と壁を初期設定
     for(row = 0; row <= NUM_ROWS; row++) {
-        for(col = 0; col <= 11; col++) {
-            if((col == 0) || (col == 11) || (row == NUM_ROWS)) {
+        for(col = 0; col <= NUM_COLS + 1; col++) {
+            if((col == 0) || (col == NUM_COLS + 1) || (row == NUM_ROWS)) {
                 background[row][col] = 9; //壁
             } else {
                 background[row][col] = 0; //真空
@@ -373,7 +373,7 @@ int check_and_delete()
         for(row = 0; row<NUM_ROWS; row++) {
             is_complete = 1;
 
-            for(col = 1; col<11; col++) {
+            for(col = 1; col<NUM_COLS + 1; col++) {
                 if(background[row][col] == 0) {
                     is_complete = 0;
                 }
@@ -386,14 +386,14 @@ int check_and_delete()
 
 
         // 列を消去
-        for(col = 1; col<11; col++) {
+        for(col = 1; col< NUM_COLS + 1; col++) {
             background[row][col] = 0;
         }
 
 
         //消えた列より上にあった固定ブロックを列の消えたところへ下ろす
         for(k = row; k>0; k--) {
-            for(col = 1; col<11; col++) {
+            for(col = 1; col< NUM_COLS + 1; col++) {
                 background[k][col] = background[k-1][col];
             }
         }
