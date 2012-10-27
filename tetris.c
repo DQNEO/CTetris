@@ -148,7 +148,7 @@ void init()
     for(row = 0; row <= NUM_ROWS; row++) {
         for(col = 0; col <= NUM_COLS + 1; col++) {
             if((col == 0) || (col == NUM_COLS + 1) || (row == NUM_ROWS)) {
-                background[row][col] = 9; //•Ç
+                background[row][col] = 2; //•Ç
             } else {
                 background[row][col] = 0; //^‹ó
             }
@@ -437,7 +437,7 @@ void view_render()
                 case 0:
                     cell = (char *)TILE_SPACE;
                     break;
-                case 9:
+                case 2:
                     cell = (char *)TILE_WALL;
                     break;
                 case 1:
