@@ -170,7 +170,7 @@ void init()
 int block_new()
 {
     int r, c; //forループ制御用の変数
-
+    int cell;
     
     //まずブロックの座標を初期位置にリセット
     myblock.pos.c = 4;
@@ -183,16 +183,15 @@ int block_new()
 
     //壁＋ブロックをフィールドへ
     //TODO:ここの処理がわかりにくい。直感的でない。
-    int overlay;
     for(r = 0; r<4; r++) {
         for(c = 0 + myblock.pos.c ; c< 4 +  myblock.pos.c ; c++) {
-            overlay = background[r][c] + myblock.pattern[r][c - myblock.pos.c];
+            cell = background[r][c] + myblock.pattern[r][c - myblock.pos.c];
             //登場した新ブロックが既に固定ブロックに重なっていればゲームオーバー
             //TODO:1がマジックナンバーなのでなんとかしたい。
-            if (overlay > 1) {
+            if (cell > 1) {
                 return 0;
             }
-            view_data[r][c] = overlay;
+            view_data[r][c] = cell;
         }
     }
 
