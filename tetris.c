@@ -27,7 +27,7 @@ void view_clear();
 int  rand_block_type();
 
 void copy_block(int src[4][4], int dst[4][4]);
-void copy_whole(int src[21][12], int dst[21][12])
+void copy_whole(int src[21][12], int dst[21][12]);
 
 
 //グローバル変数
@@ -423,11 +423,11 @@ void view_render()
 {
     int row, col;
     char output[25*30] ="";
-
+    char offset [] = "        ";
 
     //view_dataの中身(壁、ブロック、真空)を画面表示
     for(row = 0; row<NUM_ROWS + 1; row++) {
-        strcat(output ,"          ");
+        strcat(output, offset);
         for(col = 0; col < NUM_COLS + 2; col++) {
 
             switch(view_data[row][col]) {
@@ -440,7 +440,7 @@ void view_render()
                 case 1:
                     strcat(output, TILE_BLOCK);
                     break;
-            }
+            };
         }
 
         strcat(output, "\n");
