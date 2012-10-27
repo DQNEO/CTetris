@@ -244,15 +244,15 @@ void block_operate()
 
 //重なり検査
 //落下中のブロックが壁や固定済みブロックに接触していないか判別
+//ブロックが向かう位置に、固定ブロックもしくは壁があるかどうかを検査
 int is_attached(int dx, int dy)
 {
-    int i, j; //forループ制御用変数
+    int r, c;
 
-    //ブロックが向かう位置に、固定ブロックもしくは壁があるかどうかを検査
-    for(i = 0; i<4; i++) {
-        for(j = 0; j<4; j++) {
-            if(myblock.pattern[i][j]) {
-                if(background[myblock.pos.r + dy + i][myblock.pos.c + dx + j] != 0) {
+    for(r = 0; r<4; r++) {
+        for(c = 0; c<4; c++) {
+            if(myblock.pattern[r][c]) {
+                if(background[myblock.pos.r + dy + r][myblock.pos.c + dx + c] != 0) {
                     return 1;
                 }
             }
