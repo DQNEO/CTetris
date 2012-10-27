@@ -264,12 +264,12 @@ int is_attached(int dx, int dy)
 //落下中ブロックを移動
 void block_move(int dx, int dy)
 {
-    int i, j;
+    int r, c;
 
     //一度ブロックを消して
-    for(i = 0; i<4; i++) {
-        for(j = 0; j<4; j++) {
-            view_data[myblock.pos.r+i][myblock.pos.c+j] -= myblock.pattern[i][j];
+    for(r = 0; r<4; r++) {
+        for(c = 0; c<4; c++) {
+            view_data[myblock.pos.r+r][myblock.pos.c+c] -= myblock.pattern[r][c];
         }
     }
     //ブロックの座標を更新
@@ -277,9 +277,9 @@ void block_move(int dx, int dy)
     myblock.pos.r += dy;
 
     //新しい座標にブロックを入れなおし
-    for(i = 0; i<4; i++) {
-        for(j = 0; j<4; j++) {
-            view_data[myblock.pos.r+i][myblock.pos.c+j] += myblock.pattern[i][j];
+    for(r = 0; r<4; r++) {
+        for(c = 0; c<4; c++) {
+            view_data[myblock.pos.r+r][myblock.pos.c+c] += myblock.pattern[r][c];
         }
     }
 
