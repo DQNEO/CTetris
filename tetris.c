@@ -305,11 +305,7 @@ int block_rotate()
     }
     //重なってるブロックが出てしまったらブロックを回転前に戻して中止
     if(is_attached(0, 0)) {
-        for(i = 0; i<4; i++) {
-            for(j = 0; j<4; j++) {
-                myblock.pattern[i][j] = temp[i][j];
-            }
-        }
+        copy_block(temp, myblock.pattern);
         return 1;
     }
 
