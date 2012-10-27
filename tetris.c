@@ -29,7 +29,6 @@ int  rand_block_type();
 void copy_block(int src[4][4], int dst[4][4]);
 void copy_whole(int src[21][12], int dst[21][12]);
 
-
 //グローバル変数
 const int NUM_ROWS = 20;
 const int NUM_COLS = 10;
@@ -40,9 +39,10 @@ char *tiles[3] = {
  "□",
 };
 
-
-int background[21][12];     // 壁と固定済みブロック
-int view_data[21][12];      // 画面データ。background[][]を背景としてその上にmyblock.pattern[][]を重ねたもの
+// 壁と固定済みブロック
+int background[21][12];
+// 画面データ。background[][]を背景としてその上にmyblock.pattern[][]を重ねたもの
+int view_data[21][12];
 
 //ブロックのr,c座標
 struct position {
