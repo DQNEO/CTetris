@@ -43,7 +43,14 @@ struct position {
     int y;
 };
 
+struct block {
+    struct position pos;
+    int pattern[4][4];
+};
+
 struct position pos;
+struct block myblock;
+
 
 int total_point = 0; //合計得点
 int add_points[5] = {0,100,300,500,1000}; //同時消しの加算ポイント
