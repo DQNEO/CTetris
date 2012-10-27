@@ -437,11 +437,11 @@ void view_render()
                 case 0:
                     cell = (char *)TILE_SPACE;
                     break;
-                case 2:
-                    cell = (char *)TILE_WALL;
-                    break;
                 case 1:
                     cell = (char *) TILE_BLOCK;
+                    break;
+                case 2:
+                    cell = (char *)TILE_WALL;
                     break;
             };
 
