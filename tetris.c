@@ -215,16 +215,14 @@ int rand_block_type()
 //キー入力を受けてブロックを操作する(移動/回転)
 void block_operate()
 {
-    char key; //受け付けたキーを保存する変数
-
-    key = getch(); //キーから一文字入力
+    char key = getch(); //キーから一文字入力
 
     //キーに応じて各方向へブロックを移動したり、回転させたりする
     switch(key) {
 
         case KEY_RIGHT: // move right
             if(!is_attached(+1, 0)) {
-                block_move(1, 0);
+                block_move(+1, 0);
             }
             break;
 
@@ -235,7 +233,7 @@ void block_operate()
             break;
         case KEY_DOWN: // move down
             if(!is_attached(0, +5)) {
-                block_move(0, 5);
+                block_move(0, +5);
             }
             break;
         case KEY_ROTATE: // rotate
