@@ -165,7 +165,7 @@ void init()
 //@return 0:ゲームオーバー, 1:ゲーム続く
 int block_new()
 {
-    int i, j; //forループ制御用の変数
+    int r, c; //forループ制御用の変数
 
     //ブロックの種類。ランダムに決まる。
     int block_type = rand_block_type();
@@ -178,20 +178,15 @@ int block_new()
     copy_block(block_patterns[block_type], myblock.pattern);
 
     //壁＋ブロックをフィールドへ
-    for(i = 0; i<4; i++) {
-        for(j = 0; j<4; j++) {
-            view_data[i][j+4] = background[i][j+4] + myblock.pattern[i][j];
-        }
-    }
-
-    //ゲームオーバー判定
-    for(i = 0; i<4; i++) {
-        for(j = 0; j<4; j++) {
-            //初期位置に置いたブロックが既に固定ブロックに重なっていればゲームオーバー
-            if(view_data[i][j+4] > 1) {
+    int overlay;
+    for(r = 0; r<4; r++) {
+        for(c = 0; c<4; c++) {
+            overlay = background[r][c+4] + myblock.pattern[r][c];
+            //登場した新ブロックが既に固定ブロックに重なっていればゲームオーバー
+            if (overlay > 1) {
                 return 0;
             }
-
+            view_data[r][c+4] = overlay;
         }
     }
 
