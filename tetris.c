@@ -156,12 +156,10 @@ void init()
             } else {
                 background[row][col] = 0; //真空
             }
-            
-            view_data[row][col] = background[row][col];
         }
     }
 
-
+    copy_whole(background, view_data);
     block_new(); //最初のブロックを生成
     view_render();
 }
