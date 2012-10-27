@@ -149,8 +149,8 @@ void init()
     int row, col;
 
     //‰æ–Ê‚Æ•Ç‚ğ‰Šúİ’è
-    for(row = 0; row <= NUM_ROWS; row++) {
-        for(col = 0; col <= NUM_COLS + 1; col++) {
+    for(row = 0; row < NUM_ROWS + 1; row++) {
+        for(col = 0; col < NUM_COLS + 2; col++) {
             if((col == 0) || (col == NUM_COLS + 1) || (row == NUM_ROWS)) {
                 background[row][col] = 2; //•Ç
             } else {
