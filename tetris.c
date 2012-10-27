@@ -181,8 +181,8 @@ int block_new()
     //TODO:ここの処理がわかりにくい。直感的でない。
     int overlay;
     for(r = 0; r<4; r++) {
-        for(c = 0+4; c<4+4; c++) {
-            overlay = background[r][c] + myblock.pattern[r][c-4];
+        for(c = 0 + myblock.pos.c ; c< 4 +  myblock.pos.c ; c++) {
+            overlay = background[r][c] + myblock.pattern[r][c - myblock.pos.c];
             //登場した新ブロックが既に固定ブロックに重なっていればゲームオーバー
             //TODO:1がマジックナンバーなのでなんとかしたい。
             if (overlay > 1) {
