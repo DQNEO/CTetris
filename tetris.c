@@ -130,9 +130,9 @@ void init()
     int row, col;
 
     //画面と壁を初期設定
-    for(row = 0; row <= 20; row++) {
+    for(row = 0; row <= NUM_ROWS; row++) {
         for(col = 0; col <= 11; col++) {
-            if((col == 0) || (col == 11) || (row == 20)) {
+            if((col == 0) || (col == 11) || (row == NUM_ROWS)) {
                 background[row][col] = 9; //壁
             } else {
                 background[row][col] = 0; //真空
@@ -342,7 +342,7 @@ int block_lock()
     int i, j, num_lines;
 
     //ブロックを壁に加える
-    for(i = 0; i<21; i++) {
+    for(i = 0; i<NUM_ROWS + 1; i++) {
         for(j = 0; j<12; j++) {
             background[i][j] = view_data[i][j];
         }
@@ -351,7 +351,7 @@ int block_lock()
     num_lines = check_and_delete(); //横一列がそろってるか判定して処理する関数を呼ぶ
 
     //列完成判定後の壁を画面データへ
-    for(i = 0; i<21; i++) {
+    for(i = 0; i< NUM_ROWS+1; i++) {
         for(j = 0; j<12; j++) {
             view_data[i][j] = background[i][j];
         }
@@ -370,7 +370,7 @@ int check_and_delete()
     int num_lines = 0; //同時に消したラインの数
 
     while(1) {
-        for(row = 0; row<20; row++) {
+        for(row = 0; row<NUM_ROWS; row++) {
             is_complete = 1;
 
             for(col = 1; col<11; col++) {
@@ -411,7 +411,7 @@ void view_render()
 
 
     //view_dataの中身(壁、ブロック、真空)を画面表示
-    for(row = 0; row<21; row++) {
+    for(row = 0; row<NUM_ROWS + 1; row++) {
         strcat(output_string ,"          ");
         for(col = 0; col < 12; col++) {
 
