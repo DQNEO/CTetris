@@ -178,11 +178,13 @@ int block_new()
     copy_block(block_patterns[block_type], myblock.pattern);
 
     //壁＋ブロックをフィールドへ
+    //TODO:ここの処理がわかりにくい。直感的でない。
     int overlay;
     for(r = 0; r<4; r++) {
         for(c = 0; c<4; c++) {
             overlay = background[r][c+4] + myblock.pattern[r][c];
             //登場した新ブロックが既に固定ブロックに重なっていればゲームオーバー
+            //TODO:1がマジックナンバーなのでなんとかしたい。
             if (overlay > 1) {
                 return 0;
             }
