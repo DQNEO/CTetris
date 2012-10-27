@@ -264,7 +264,7 @@ int is_attached(int dx, int dy)
 //落下中ブロックを移動
 void block_move(int dx, int dy)
 {
-    int i, j; //forループ制御用変数
+    int i, j;
 
     //一度ブロックを消して
     for(i = 0; i<4; i++) {
