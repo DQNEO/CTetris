@@ -4,9 +4,9 @@
 #include <time.h>
 #include <string.h>
 
-#define KEY_LEFT  'j'
-#define KEY_RIGHT 'k'
-#define KEY_DOWN  ' '
+#define KEY_LEFT   'j'
+#define KEY_RIGHT  'k'
+#define KEY_DOWN   ' '
 #define KEY_ROTATE 'x'
 
 #define INTERVAL 2000
@@ -245,7 +245,7 @@ int is_attached(int x2, int y2)
 }
 
 //落下中ブロックを移動
-void block_move(int x2, int y2)
+void block_move(int dx, int dy)
 {
     int i, j; //forループ制御用変数
 
@@ -256,8 +256,8 @@ void block_move(int x2, int y2)
         }
     }
     //ブロックの座標を更新
-    x = x2;
-    y = y2;
+    x = dx;
+    y = dy;
 
     //新しい座標にブロックを入れなおし
     for(i = 0; i<4; i++) {
@@ -343,7 +343,7 @@ int block_lock()
 
     //ブロックを壁に加える
     for(i = 0; i<NUM_ROWS + 1; i++) {
-        for(j = 0; j<12; j++) {
+        for(j = 0; j<NUM_COLS + 2; j++) {
             background[i][j] = view_data[i][j];
         }
     }
@@ -352,12 +352,12 @@ int block_lock()
 
     //列完成判定後の壁を画面データへ
     for(i = 0; i< NUM_ROWS+1; i++) {
-        for(j = 0; j<12; j++) {
+        for(j = 0; j< NUM_COLS + 2; j++) {
             view_data[i][j] = background[i][j];
         }
     }
 
-    //消したラインの数をポイントに変換して加算
+    //消したラインの数
     return num_lines;
 }
 
@@ -413,7 +413,7 @@ void view_render()
     //view_dataの中身(壁、ブロック、真空)を画面表示
     for(row = 0; row<NUM_ROWS + 1; row++) {
         strcat(output_string ,"          ");
-        for(col = 0; col < 12; col++) {
+        for(col = 0; col < NUM_COLS + 2; col++) {
 
             switch(view_data[row][col]) {
                 case 0:
