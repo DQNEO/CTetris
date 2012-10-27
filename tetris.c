@@ -21,11 +21,9 @@ int  block_rotate();
 int  block_drop();
 int  block_lock();
 int  check_and_delete();
-
 void view_render();
 void view_gameover(); 
 void view_clear();
-
 int  rand_block_type();
 
 //グローバル変数
@@ -36,7 +34,7 @@ const char *TILE_WALL  = "□";
 const char *TILE_BLOCK = "■";
 
 int background[21][12];     // 壁と固定済みブロック
-int block[4][4];            // 現在落下中のブロック
+int block[4][4];            // 現在落下中のブロックの形状データ
 int view_data[21][12];      // 画面データ。background[][]を背景としてその上にblock[][]を重ねたもの
 
 //ブロックのx,y座標
@@ -51,8 +49,8 @@ int total_point = 0; //合計得点
 int add_points[5] = {0,100,300,500,1000}; //同時消しの加算ポイント
 
 
-//７種類のブロックのデータ
-const int block_list[7][4][4] = {
+//７種類のブロックの形状データ
+const int block_patterns[7][4][4] = {
     {
         {0,1,0,0},
         {0,1,0,0},
@@ -168,8 +166,7 @@ int block_new()
     //ブロックデータの中からblock_typeに応じた種類のブロックを読み込む
     for(i = 0; i<4; i++) {
         for(j = 0; j<4; j++) {
-            block[i][j] = 0;
-            block[i][j] = block_list[block_type][i][j];
+            block[i][j] = block_patterns[block_type][i][j];
         }
     }
     //壁＋ブロックをフィールドへ
